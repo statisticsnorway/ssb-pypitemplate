@@ -6,8 +6,8 @@ on:
 
 jobs:
   tests:
-    name: ${{ matrix.session }} ${{ matrix.python }} / ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: ${{"{{"}} matrix.session {{"}}"}} ${{"{{"}} matrix.python {{"}}"}} / ${{"{{"}} matrix.os {{"}}"}}
+    runs-on: ${{"{{"}} matrix.os {{"}}"}}
     strategy:
       fail-fast: false
       matrix:
@@ -29,7 +29,7 @@ jobs:
           - { python: "3.11", os: "ubuntu-latest", session: "docs-build" }
 
     env:
-      NOXSESSION: ${{ matrix.session }}
+      NOXSESSION: ${{"{{"}} matrix.session {{"}}"}}
       FORCE_COLOR: "1"
       PRE_COMMIT_COLOR: "always"
 
@@ -37,10 +37,10 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v3
 
-      - name: Set up Python ${{ matrix.python }}
+      - name: Set up Python ${{"{{"}} matrix.python {{"}}"}}
         uses: actions/setup-python@v4.7.0
         with:
-          python-version: ${{ matrix.python }}
+          python-version: ${{"{{"}} matrix.python {{"}}"}}
 
       - name: Upgrade pip
         run: |
@@ -79,7 +79,7 @@ jobs:
           python = "py{}.{}".format(*sys.version_info[:2])
           payload = sys.version.encode() + sys.executable.encode()
           digest = hashlib.sha256(payload).hexdigest()
-          result = "${{ runner.os }}-{}-{}-pre-commit".format(python, digest[:8])
+          result = {{ '"${{ runner.os }}-{}-{}-pre-commit".format(python, digest[:8])' }}
           cmd = f'echo "result={result}" >> $GITHUB_OUTPUT'
           subprocess.run(cmd, shell=True)
 
@@ -88,13 +88,13 @@ jobs:
         if: matrix.session == 'pre-commit'
         with:
           path: ~/.cache/pre-commit
-          key: ${{ steps.pre-commit-cache.outputs.result }}-${{ hashFiles('.pre-commit-config.yaml') }}
+          key: {{ "${{ steps.pre-commit-cache.outputs.result }}-${{ hashFiles('.pre-commit-config.yaml') }}" }}
           restore-keys: |
-            ${{ steps.pre-commit-cache.outputs.result }}-
+            {{ "${{ steps.pre-commit-cache.outputs.result }}-" }}
 
       - name: Run Nox
         run: |
-          nox --python=${{ matrix.python }}
+          nox --python=${{"{{"}} matrix.python {{"}}"}}
 
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
