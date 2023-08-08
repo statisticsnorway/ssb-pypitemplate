@@ -21,7 +21,7 @@ except ImportError:
     {sys.executable} -m pip install nox-poetry"""
     raise SystemExit(dedent(message)) from None
 
-package = "{{cookiecutter.package_name}}"
+package = "ssb_pypitemplate_instance"
 python_versions = ["3.11", "3.10", "3.9", "3.8"]
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = (
@@ -162,7 +162,8 @@ def tests(session: Session) -> None:
     session.install(".")
     session.install("coverage[toml]", "pytest", "pygments")
     try:
-        session.run("coverage", "run", "--parallel", "-m", "pytest", *session.posargs)
+        session.run("coverage", "run", "--parallel", "-m", "pytest", "-o",
+                    "pythonpath=", *session.posargs)
     finally:
         if session.interactive:
             session.notify("coverage", posargs=[])
