@@ -11,6 +11,7 @@ guide
 contributing
 Code of Conduct <codeofconduct>
 license
+Major changes <changes>
 Changelog <https://github.com/cjolowicz/cookiecutter-hypermodern-python/releases>
 ```
 

@@ -2,16 +2,23 @@
 
 ## Requirements
 
-Install [Cookiecutter]:
+Install [pipx]:
 
 ```console
-$ pipx install cookiecutter
+$ python -m pip install --user pipx
+$ python -m pipx ensurepath
 ```
 
-Install [Poetry] by downloading and running [install-poetry.py]:
+Install [cruft]:
 
 ```console
-$ python install-poetry.py
+$ pipx install cruft[pyproject]
+```
+
+Install [Poetry]:
+
+```console
+$ pipx install poetry
 ```
 
 Install [Nox] and [nox-poetry]:
@@ -23,14 +30,14 @@ $ pipx inject nox nox-poetry
 
 [pipx] is preferred, but you can also install with `pip install --user`.
 
-It is recommended to set up Python 3.7, 3.8, 3.9, 3.10 using [pyenv].
+It is recommended to set up Python 3.8, 3.9, 3.10 and 3.11 using [pyenv].
 
 ## Creating a project
 
 Generate a Python project:
 
 ```console
-$ cookiecutter gh:cjolowicz/cookiecutter-hypermodern-python --checkout="2022.6.3"
+$ cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git
 ```
 
 Change to the root directory of your new project,
@@ -158,11 +165,12 @@ by applying labels to them, like this:
 
 [codecov]: https://about.codecov.io/
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
+[cruft]: https://cruft.github.io/cruft/
 [github]: https://github.com/
 [install-poetry.py]: https://install.python-poetry.org/
 [nox]: https://nox.thea.codes/
 [nox-poetry]: https://nox-poetry.readthedocs.io/
-[pipx]: https://pipxproject.github.io/pipx/
+[pipx]: https://pypa.github.io/pipx/
 [poetry]: https://python-poetry.org/
 [poetry version]: https://python-poetry.org/docs/cli/#version
 [pyenv]: https://github.com/pyenv/pyenv

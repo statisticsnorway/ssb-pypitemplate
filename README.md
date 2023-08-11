@@ -44,7 +44,7 @@ in [Statistics Norway].
 
 ✨📚✨ [Read the full documentation][readthedocs page]
 
-[cookiecutter]: https://github.com/audreyr/cookiecutter
+[cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [hypermodern python]: https://medium.com/@cjolowicz/hypermodern-python-d44485d9d769
 [cookiecutter-hypermodern-python]: https://github.com/cjolowicz/cookiecutter-hypermodern-python.git
 [statistics norway]: https://www.ssb.no/

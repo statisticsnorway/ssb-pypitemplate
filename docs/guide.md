@@ -182,10 +182,11 @@ Install [Cookiecutter] using pipx:
 $ pipx install cookiecutter
 ```
 
-Install [Poetry] by downloading and running [install-poetry.py]:
+Install [Poetry] by running the poetry installer script available at
+[install.python-poetry.org]:
 
 ```console
-$ python install-poetry.py
+$ curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 Install [Nox] and [nox-poetry] using pipx:
@@ -2653,7 +2654,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [hypermodern python cookiecutter]: https://github.com/cjolowicz/cookiecutter-hypermodern-python
 [hypermodern python]: https://medium.com/@cjolowicz/hypermodern-python-d44485d9d769
 [import hook]: https://docs.python.org/3/reference/import.html#import-hooks
-[install-poetry.py]: https://install.python-poetry.org/
+[install.python-poetry.org]: https://install.python-poetry.org
 [isort black profile]: https://pycqa.github.io/isort/docs/configuration/black_compatibility.html
 [isort force_single_line]: https://pycqa.github.io/isort/docs/configuration/options.html#force-single-line
 [isort lines_after_imports]: https://pycqa.github.io/isort/docs/configuration/options.html#lines-after-imports
@@ -2663,7 +2664,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [markdown]: https://spec.commonmark.org/current/
 [mccabe codes]: https://github.com/PyCQA/mccabe#plugin-for-flake8
 [mccabe]: https://github.com/PyCQA/mccabe
-[mit license]: https://opensource.org/license/mit
+[mit license]: https://opensource.org/license/mit/
 [mypy configuration]: https://mypy.readthedocs.io/en/stable/config_file.html
 [mypy]: https://mypy-lang.org/
 [myst]: https://myst-parser.readthedocs.io/
