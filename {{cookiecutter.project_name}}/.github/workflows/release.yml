@@ -10,6 +10,9 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
@@ -57,15 +60,12 @@ jobs:
 
       - name: Publish package on PyPI
         if: steps.check-version.outputs.tag
-        uses: pypa/gh-action-pypi-publish@v1.8.8
-        with:
-          password: {{ "${{ secrets.PYPI_TOKEN }}" }}
+        uses: pypa/gh-action-pypi-publish@v1.8.10
 
       - name: Publish package on TestPyPI
         if: "! steps.check-version.outputs.tag"
-        uses: pypa/gh-action-pypi-publish@v1.8.8
+        uses: pypa/gh-action-pypi-publish@v1.8.10
         with:
-          password: {{ "${{ secrets.TEST_PYPI_TOKEN }}" }}
           repository_url: https://test.pypi.org/legacy/
 
       - name: Publish the release notes

@@ -96,18 +96,16 @@ $ nox -s pre-commit -- install
 ### PyPI
 
 1. Sign up at [PyPI].
-2. Go to the Account Settings on PyPI,
-   generate an API token, and copy it.
-3. Go to the repository settings on GitHub, and
-   add a secret named `PYPI_TOKEN` with the token you just copied.
+2. Go to the Account Settings on PyPI, select Publishing,
+   and set up a new pending publisher as described on
+   [Creating a PyPI Project with a Trusted Publisher] [Trusted Publisher].
 
 ### TestPyPI
 
 1. Sign up at [TestPyPI].
-2. Go to the Account Settings on TestPyPI,
-   generate an API token, and copy it.
-3. Go to the repository settings on GitHub, and
-   add a secret named `TEST_PYPI_TOKEN` with the token you just copied.
+2. Go to the Account Settings on TestPyPI, select Publishing,
+   and set up a new pending publisher as described on
+   [Creating a PyPI Project with a Trusted Publisher] [Trusted Publisher].
 
 ### Codecov
 
@@ -177,3 +175,4 @@ by applying labels to them, like this:
 [pypi]: https://pypi.org/
 [read the docs]: https://readthedocs.org/
 [testpypi]: https://test.pypi.org/
+[trusted publisher]: https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/

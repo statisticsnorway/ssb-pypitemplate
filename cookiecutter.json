@@ -7,7 +7,7 @@
   "author": "Contact Person",
   "email": "contact-email@ssb.no",
   "github_organization": "statisticsnorway",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "license": ["MIT", "Apache-2.0", "GPL-3.0"],
   "development_status": [
     "Development Status :: 1 - Planning",
