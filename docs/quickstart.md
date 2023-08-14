@@ -98,29 +98,25 @@ $ nox -s pre-commit -- install
 1. Sign up at [PyPI].
 2. Go to the Account Settings on PyPI, select Publishing,
    and set up a new pending publisher as described on
-   [Creating a PyPI Project with a Trusted Publisher] [Trusted Publisher].
+   [Creating a PyPI Project with a Trusted Publisher][trusted publisher].
 
 ### TestPyPI
 
 1. Sign up at [TestPyPI].
 2. Go to the Account Settings on TestPyPI, select Publishing,
    and set up a new pending publisher as described on
-   [Creating a PyPI Project with a Trusted Publisher] [Trusted Publisher].
+   [Creating a PyPI Project with a Trusted Publisher][trusted publisher].
 
 ### Codecov
 
 1. Sign up at [Codecov].
 2. Install their GitHub app.
 
-### Read the Docs
+### GitHub Pages
 
-1. Sign up at [Read the Docs].
-2. Import your GitHub repository, using the button _Import a Project_.
-3. Install the GitHub webhook,
-   using the button _Add integration_
-   on the _Integrations_ tab
-   in the _Admin_ section of your project
-   on Read the Docs.
+[GitHub Pages] should work out of the box. The pages are deployed to<br>
+`<github username>.github.io/<repo name>` or <br>
+`<github organization>.github.io/<repo name>`.
 
 ## Releasing
 
@@ -165,6 +161,7 @@ by applying labels to them, like this:
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [cruft]: https://cruft.github.io/cruft/
 [github]: https://github.com/
+[github pages]: https://docs.github.com/en/pages
 [install-poetry.py]: https://install.python-poetry.org/
 [nox]: https://nox.thea.codes/
 [nox-poetry]: https://nox-poetry.readthedocs.io/
