@@ -1,8 +1,6 @@
 name: Tests
 
-on:
-  - push
-  - pull_request
+on: [push, pull_request]
 
 jobs:
   tests:
@@ -17,11 +15,9 @@ jobs:
           - { python: "3.11", os: "ubuntu-latest", session: "mypy" }
           - { python: "3.10", os: "ubuntu-latest", session: "mypy" }
           - { python: "3.9", os: "ubuntu-latest", session: "mypy" }
-          - { python: "3.8", os: "ubuntu-latest", session: "mypy" }
           - { python: "3.11", os: "ubuntu-latest", session: "tests" }
           - { python: "3.10", os: "ubuntu-latest", session: "tests" }
           - { python: "3.9", os: "ubuntu-latest", session: "tests" }
-          - { python: "3.8", os: "ubuntu-latest", session: "tests" }
           - { python: "3.11", os: "windows-latest", session: "tests" }
           - { python: "3.11", os: "macos-latest", session: "tests" }
           - { python: "3.11", os: "ubuntu-latest", session: "typeguard" }
@@ -116,6 +112,8 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Set up Python
         uses: actions/setup-python@v4.7.0
@@ -153,3 +151,11 @@ jobs:
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v3.1.4
+
+      - name: SonarCloud Scan
+        env:
+          GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN }}" }} # Needed to get PR information, if any
+          SONAR_TOKEN: {{ "${{ secrets.SONAR_TOKEN }}" }}
+        # No need to run SonarCloud analysis if dependabot update or token not defined
+        if: env.SONAR_TOKEN != '' && (github.actor != 'dependabot[bot]')
+        uses: SonarSource/sonarcloud-github-action@v2.0.0

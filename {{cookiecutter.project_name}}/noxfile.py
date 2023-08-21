@@ -22,7 +22,7 @@ except ImportError:
     raise SystemExit(dedent(message)) from None
 
 package = "{{cookiecutter.package_name}}"
-python_versions = ["3.11", "3.10", "3.9", "3.8"]
+python_versions = ["3.11", "3.10", "3.9"]
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = (
     "pre-commit",
@@ -94,19 +94,28 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
 
         text = hook.read_text()
 
-        if not any(
-            Path("A") == Path("a") and bindir.lower() in text.lower() or bindir in text
-            for bindir in bindirs
-        ):
+        if not is_bindir_in_text(bindirs, text):
             continue
 
         lines = text.splitlines()
+        hook.write_text(insert_header_in_hook(headers, lines))
 
-        for executable, header in headers.items():
-            if executable in lines[0].lower():
-                lines.insert(1, dedent(header))
-                hook.write_text("\n".join(lines))
-                break
+
+def is_bindir_in_text(bindirs: list[str], text: str) -> bool:
+    """Helper function to check if bindir is in text."""
+    return any(
+        Path("A") == Path("a") and bindir.lower() in text.lower() or bindir in text
+        for bindir in bindirs
+    )
+
+
+def insert_header_in_hook(header: dict[str, str], lines: list[str]) -> str:
+    """Helper function to insert headers in hook's text."""
+    for executable, header_text in header.items():
+        if executable in lines[0].lower():
+            lines.insert(1, dedent(header_text))
+            return "\n".join(lines)
+    return "\n".join(lines)
 
 
 @session(name="pre-commit", python=python_versions[0])
