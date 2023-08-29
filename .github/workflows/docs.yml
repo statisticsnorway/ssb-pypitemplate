@@ -29,9 +29,10 @@ jobs:
         run: nox --force-color --session=docs
       - name: Check links
         run: nox --force-color --session=linkcheck
-      - uses: actions/upload-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          path: docs/_build
+          path: "docs/_build"
 
   deploy:
     environment:
