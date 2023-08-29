@@ -27,12 +27,12 @@ jobs:
           pip install --constraint=.github/workflows/constraints.txt nox
       - name: Build documentation
         run: nox --force-color --session=docs
-      - name: Check links
-        run: nox --force-color --session=linkcheck
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: "docs/_build"
+      - name: Check links
+        run: nox --force-color --session=linkcheck
 
   deploy:
     environment:
