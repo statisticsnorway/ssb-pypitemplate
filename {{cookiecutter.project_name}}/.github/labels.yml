@@ -10,9 +10,6 @@
 - name: bug
   description: Something isn't working
   color: d73a4a
-- name: build
-  description: Build System and Dependencies
-  color: bfdadc
 - name: ci
   description: Continuous Integration
   color: 4a97d6
@@ -64,3 +61,6 @@
 - name: wontfix
   description: This will not be worked on
   color: ffffff
+- name: "skip-changelog"
+  description: Changes that should be omitted from the release notes
+  color: ededed

@@ -22,7 +22,8 @@ categories:
   - title: ":package: Dependencies"
     labels:
       - "dependencies"
-      - "build"
+exclude-labels:
+  - "skip-changelog"
 template: |
   ## Changes
 

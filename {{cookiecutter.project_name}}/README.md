@@ -5,18 +5,20 @@
 [![Python Version](https://img.shields.io/pypi/pyversions/{{cookiecutter.project_name}})][pypi status]
 [![License](https://img.shields.io/pypi/l/{{cookiecutter.project_name}})][license]
 
-[![Read the documentation at https://{{cookiecutter.project_name}}.readthedocs.io/](https://img.shields.io/readthedocs/{{cookiecutter.project_name}}/latest.svg?label=Read%20the%20Docs)][read the docs]
+[![Documentation](https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/actions/workflows/docs.yml/badge.svg)][documentation]
 [![Tests](https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/workflows/Tests/badge.svg)][tests]
-[![Codecov](https://codecov.io/gh/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/branch/main/graph/badge.svg)][codecov]
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}&metric=coverage)][sonarcov]
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}&metric=alert_status)][sonarquality]
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)][poetry]
 
 [pypi status]: https://pypi.org/project/{{cookiecutter.project_name}}/
-[read the docs]: https://{{cookiecutter.project_name}}.readthedocs.io/
+[documentation]: https://{{cookiecutter.github_organization}}.github.io/{{cookiecutter.project_name}}
 [tests]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/actions?workflow=Tests
-[codecov]: https://app.codecov.io/gh/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}
+[sonarcov]: https://sonarcloud.io/summary/overall?id={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}
+[sonarquality]: https://sonarcloud.io/summary/overall?id={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [black]: https://github.com/psf/black
 [poetry]: https://python-poetry.org/
@@ -39,7 +41,7 @@ $ pip install {{cookiecutter.project_name}}
 
 ## Usage
 
-Please see the [Command-line Reference] for details.
+Please see the [Reference Guide] for details.
 
 ## Contributing
 
@@ -58,11 +60,11 @@ please [file an issue] along with a detailed description.
 
 ## Credits
 
-This project was generated from [@cjolowicz]'s [Hypermodern Python Cookiecutter] template.
+This project was generated from [Statistics Norway]'s [SSB PyPI Template].
 
-[@cjolowicz]: https://github.com/cjolowicz
+[statistics norway]: https://www.ssb.no/en
 [pypi]: https://pypi.org/
-[hypermodern python cookiecutter]: https://github.com/cjolowicz/cookiecutter-hypermodern-python
+[ssb pypi template]: https://github.com/statisticsnorway/ssb-pypitemplate
 [file an issue]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/issues
 [pip]: https://pip.pypa.io/
 
@@ -70,4 +72,4 @@ This project was generated from [@cjolowicz]'s [Hypermodern Python Cookiecutter]
 
 [license]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/blob/main/LICENSE
 [contributor guide]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/blob/main/CONTRIBUTING.md
-[command-line reference]: https://{{cookiecutter.project_name}}.readthedocs.io/en/latest/usage.html
+[reference guide]: https://{{cookiecutter.github_organization}}.github.io/{{cookiecutter.project_name}}/reference.html
