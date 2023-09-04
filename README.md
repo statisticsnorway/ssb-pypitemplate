@@ -6,9 +6,9 @@
 [![Python Version][python version badge]][github page]
 [![CalVer][calver badge]][calver]
 [![License][license badge]][license]<br>
-[![Read the documentation][readthedocs badge]][readthedocs page]
+[![Documentation][ghpages badge]][ghpages page]
 [![Tests][github actions badge]][github actions page]
-[![Codecov][codecov badge]][codecov page]<br>
+[![Coverage][sonarcov badge]][sonar page]<br>
 [![pre-commit enabled][pre-commit badge]][pre-commit project]
 [![Black codestyle][black badge]][black project]
 [![Contributor Covenant][contributor covenant badge]][code of conduct]
@@ -18,8 +18,8 @@
 [calver badge]: https://img.shields.io/badge/calver-YYYY.MM.DD-22bfda.svg
 [calver]: https://calver.org/
 [code of conduct]: https://github.com/statisticsnorway/ssb-pypitemplate/blob/main/CODE_OF_CONDUCT.md
-[codecov badge]: https://codecov.io/gh/cjolowicz/cookiecutter-hypermodern-python-instance/branch/main/graph/badge.svg
-[codecov page]: https://app.codecov.io/gh/cjolowicz/cookiecutter-hypermodern-python-instance
+[sonarcov badge]: https://sonarcloud.io/api/project_badges/measure?project=statisticsnorway_ssb-pypitemplate-instance&metric=coverage
+[sonar page]: https://sonarcloud.io/summary/overall?id=statisticsnorway_ssb-pypitemplate-instance
 [contributor covenant badge]: https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg
 [github actions badge]: https://github.com/statisticsnorway/ssb-pypitemplate/workflows/Tests/badge.svg
 [github actions page]: https://github.com/statisticsnorway/ssb-pypitemplate/actions?workflow=Tests
@@ -28,9 +28,9 @@
 [license]: https://opensource.org/licenses/MIT
 [pre-commit badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
 [pre-commit project]: https://pre-commit.com/
-[python version badge]: https://img.shields.io/pypi/pyversions/cookiecutter-hypermodern-python-instance
-[readthedocs badge]: https://img.shields.io/readthedocs/cookiecutter-hypermodern-python/latest.svg?label=Read%20the%20Docs
-[readthedocs page]: https://cookiecutter-hypermodern-python.readthedocs.io/
+[python version badge]: https://img.shields.io/pypi/pyversions/ssb-pypitemplate-instance
+[ghpages badge]: https://github.com/statisticsnorway/ssb-pypitemplate/actions/workflows/docs.yml/badge.svg
+[ghpages page]: https://statisticsnorway.github.io/ssb-pypitemplate/
 [status badge]: https://badgen.net/badge/status/beta/d8624d
 
 <!-- badges-end -->
@@ -42,12 +42,12 @@
 This repo is a fork of [cookiecutter-hypermodern-python], and adjusted for use
 in [Statistics Norway].
 
-✨📚✨ [Read the full documentation][readthedocs page]
+✨📚✨ [Read the full documentation][ghpages page]
 
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [hypermodern python]: https://medium.com/@cjolowicz/hypermodern-python-d44485d9d769
 [cookiecutter-hypermodern-python]: https://github.com/cjolowicz/cookiecutter-hypermodern-python.git
-[statistics norway]: https://www.ssb.no/
+[statistics norway]: https://www.ssb.no/en
 
 ## Usage
 
@@ -55,9 +55,21 @@ Use [Cruft] to create and update an instance of this template.
 
 ```console
 cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.2.24
+```
 
-# To check if there are there are template updates and update your instance with
-# the new updates, run the following commands from the root directory:
+Cruft downloads the template, and asks you a series of questions about project variables,
+for example, how you wish your project to be named. Further details and a complete list of
+project variables with explanation can be found in the [Creating a project] section of the
+user guide.
+
+[creating a project]: https://statisticsnorway.github.io/ssb-pypitemplate/guide.html#creating-a-project
+
+### Update
+
+To check if there are there are template updates and update your instance with
+the new updates, run the following commands from the root directory:
+
+```console
 cruft check
 cruft update
 ```

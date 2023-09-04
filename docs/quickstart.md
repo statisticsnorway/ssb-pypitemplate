@@ -40,6 +40,9 @@ Generate a Python project:
 cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.2.24
 ```
 
+Cruft downloads the template and asks you a series of questions about project variables.
+Further details can be found in the [Creating a project] section of the user guide.
+
 Change to the root directory of your new project,
 and create a Git repository:
 
@@ -54,15 +57,8 @@ $ git commit
 Run the command-line interface from the source tree:
 
 ```console
-$ poetry install
+$ poetry update
 $ poetry run <project>
-```
-
-Run an interactive Python session:
-
-```console
-$ poetry install
-$ poetry run python
 ```
 
 ## Testing
@@ -104,6 +100,7 @@ $ nox -s pre-commit -- install
    - Owner: GitHub organization name or GitHub username that owns the repository.
    - Repository name: Name of the GitHub repo.
    - Workflow name: `release.yml`
+   - Environment: Leave empty.
 
 ### TestPyPI
 
@@ -116,11 +113,7 @@ $ nox -s pre-commit -- install
    - Owner: GitHub organization name or GitHub username that owns the repository.
    - Repository name: Name of the GitHub repo.
    - Workflow name: `release.yml`
-
-### Codecov
-
-1. Sign up at [Codecov].
-2. Install their GitHub app.
+   - Environment: Leave empty.
 
 ### GitHub Pages
 
@@ -184,8 +177,8 @@ by applying labels to them, like this:
 
 <!-- table-release-drafter-sections-end -->
 
-[codecov]: https://about.codecov.io/
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
+[creating a project]: https://statisticsnorway.github.io/ssb-pypitemplate/guide.html#creating-a-project
 [cruft]: https://cruft.github.io/cruft/
 [github]: https://github.com/
 [github pages]: https://docs.github.com/en/pages

@@ -217,10 +217,10 @@ by pointing Cookiecutter to its [GitHub repository][hypermodern python cookiecut
 Use the `--checkout` option with the [current stable release][2023.2.24]:
 
 ```console
-$ cookiecutter gh:cjolowicz/cookiecutter-hypermodern-python --checkout="2023.2.24"
+$ cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.2.24
 ```
 
-Cookiecutter downloads the template,
+Cruft downloads the template,
 and asks you a series of questions about project variables,
 for example, how you wish your project to be named.
 When you have answered these questions,
@@ -237,35 +237,38 @@ Here is a complete list of the project variables defined by this template:
   - Description
   - Example
 - - `project_name`
-  - Project name on PyPI and GitHub
-  - `hypermodern-python`
+  - Project name on PyPI and GitHub repo name
+  - `ssb-library`
 - - `package_name`
   - Import name of the package
-  - `hypermodern_python`
+  - `ssb_library`
 - - `friendly_name`
   - Friendly project name
-  - `Hypermodern Python`
-- - `author`
-  - Primary author
-  - Katherine Johnson
-- - `email`
-  - E-mail address of the author
-  - katherine@example.com
-- - `github_organization`
-  - GitHub organization or GitHub username of the author
-  - `katherine`
-- - `version`
-  - Initial project version
-  - `0.0.0`
+  - `SSB Library`
+- - `copyright_owner`
+  - Copyright owner
+  - Statistics Norway
 - - `copyright_year`
   - The project copyright year
   - `2023`
+- - `author`
+  - Name of the contact person
+  - Ola Nordmann
+- - `email`
+  - E-mail address of the contact person
+  - ola.normann@ssb.no
+- - `github_organization`
+  - GitHub organization or GitHub username of the author
+  - `statisticsnorway`
+- - `version`
+  - Initial project version
+  - `0.0.0`
 - - `license`
   - The project license
   - `MIT`
 - - `development_status`
   - Development status of the project
-  - `Development Status :: 3 - Alpha`
+  - `Development Status :: 4 - Beta`
 
 :::
 
@@ -279,7 +282,7 @@ Your choices are recorded in the file `.cookiecutter.json` in the generated proj
 together with the URL of this Cookiecutter template.
 Having this [JSON] file in the project makes it possible later on
 to update your project with changes from the Cookiecutter template,
-using tools such as [cupper].
+using tools such as [cruft].
 
 In the remainder of this guide,
 `<project>` and `<package>` are used
@@ -2613,7 +2616,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [coverage.py]: https://coverage.readthedocs.io/
 [crazy-max/ghaction-github-labeler]: https://github.com/crazy-max/ghaction-github-labeler
-[cupper]: https://github.com/senseyeio/cupper
+[cruft]: https://cruft.github.io/cruft/
 [curl]: https://curl.se
 [cyclomatic complexity]: https://en.wikipedia.org/wiki/Cyclomatic_complexity
 [darglint codes]: https://github.com/terrencepreilly/darglint#error-codes
