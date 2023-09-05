@@ -35,7 +35,7 @@
 
 <!-- badges-end -->
 
-<p align="center"><img alt="logo" src="docs/_static/logo.png" width="50%" /></p>
+<p align="center"><img alt="logo" src="docs/_static/ssb_logo.svg" width="50%" /></p>
 
 [Cookiecutter] template for a Python package based on the
 [Hypermodern Python] article series.
@@ -44,10 +44,15 @@ in [Statistics Norway].
 
 ✨📚✨ [Read the full documentation][ghpages page]
 
+- [Quickstart]
+- [User Guide]
+
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [hypermodern python]: https://medium.com/@cjolowicz/hypermodern-python-d44485d9d769
 [cookiecutter-hypermodern-python]: https://github.com/cjolowicz/cookiecutter-hypermodern-python.git
 [statistics norway]: https://www.ssb.no/en
+[quickstart]: https://statisticsnorway.github.io/ssb-pypitemplate/quickstart.html
+[user guide]: https://statisticsnorway.github.io/ssb-pypitemplate/guide.html
 
 ## Usage
 

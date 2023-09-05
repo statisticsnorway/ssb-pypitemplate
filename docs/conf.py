@@ -9,7 +9,7 @@ extensions = ["sphinx.ext.intersphinx", "myst_parser"]
 intersphinx_mapping = {"mypy": ("https://mypy.readthedocs.io/en/stable/", None)}
 language = "en"
 html_theme = "furo"
-html_logo = "_static/logo.png"
+html_logo = "_static/ssb_logo.svg"
 linkcheck_ignore = [
     "codeofconduct.html",
     "https://github.com/PyCQA/flake8-bugbear#",
