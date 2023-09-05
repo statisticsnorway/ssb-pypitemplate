@@ -31,7 +31,7 @@ and adopted for use in [Statistics Norway].
 Use [Cruft](https://cruft.github.io/cruft/) to create and update an instance of this template.
 
 ```console
-cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.2.24
+cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.9.5
 
 # To check if there are there are template updates and update your instance with
 # the new updates, run the following commands from the root directory:
