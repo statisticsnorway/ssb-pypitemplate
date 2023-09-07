@@ -1,4 +1,8 @@
 [tool.poetry]
+
+{% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') -%}
+
+{% endif -%}
 name = "{{cookiecutter.project_name}}"
 version = "{{cookiecutter.version}}"
 description = "{{cookiecutter.friendly_name}}"
@@ -8,14 +12,8 @@ readme = "README.md"
 homepage = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}"
 repository = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}"
 documentation = "https://{{cookiecutter.github_organization}}.github.io/{{cookiecutter.project_name}}"
-{% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') -%}
-packages = [
-    { include = "{{cookiecutter.package_name}}", from = "src" },
-]
-{% endif -%}
-classifiers = [
-    "{{cookiecutter.development_status}}",
-]
+packages = [{ include = "{{cookiecutter.package_name}}", from = "src" }]
+classifiers = ["{{cookiecutter.development_status}}"]
 
 [tool.poetry.urls]
 Changelog = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/releases"
@@ -26,30 +24,22 @@ click = ">=8.0.1"
 
 [tool.poetry.group.dev.dependencies]
 Pygments = ">=2.10.0"
-bandit = ">=1.7.4"
-black = {extras = ["jupyter"], version = ">=23.1.0"}
-coverage = {extras = ["toml"], version = ">=6.2"}
-darglint = ">=1.8.1"
-flake8 = ">=4.0.1"
-flake8-bugbear = ">=21.9.2"
-flake8-docstrings = ">=1.6.0"
-flake8-rst-docstrings = ">=0.2.5"
+black = { extras = ["jupyter"], version = ">=23.1.0" }
+coverage = { extras = ["toml"], version = ">=6.2" }
 furo = ">=2021.11.12"
-isort = ">=5.10.1"
 mypy = ">=0.930"
-pep8-naming = ">=0.12.1"
 pre-commit = ">=2.16.0"
 pre-commit-hooks = ">=4.1.0"
+ruff = ">=0.0.284"
 pytest = ">=6.2.5"
-pyupgrade = ">=2.29.1"
 safety = ">=1.10.3"
 sphinx = ">=6.2.1"
 sphinx-autobuild = ">=2021.3.14"
 sphinx-autodoc-typehints = ">=1.24.0"
 sphinx-click = ">=3.0.2"
 typeguard = ">=2.13.3"
-xdoctest = {extras = ["colors"], version = ">=0.15.10"}
-myst-parser = {version = ">=0.16.1"}
+xdoctest = { extras = ["colors"], version = ">=0.15.10" }
+myst-parser = { version = ">=0.16.1" }
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
@@ -69,10 +59,41 @@ source = ["{{cookiecutter.package_name}}", "tests"]
 show_missing = true
 fail_under = 80
 
-[tool.isort]
-profile = "black"
-force_single_line = true
-lines_after_imports = 2
+[tool.ruff]
+exclude = [
+    ".git",
+    "__pycache__",
+    "old",
+    "build",
+    "dist",
+    ".venv",
+    ".eggs",
+    ".tox",
+    ".ipynb_checkpoints",
+]
+ignore = ["A003", "B008", "E501"]
+
+# Aggressively activate all rules.
+# These may be customized as desired: https://beta.ruff.rs/docs/rules/
+select = ["ALL"]
+
+[tool.ruff.mccabe]
+max-complexity = 15
+
+[tool.ruff.pep8-naming]
+classmethod-decorators = ["classmethod", "validator", "root_validator"]
+
+[tool.ruff.per-file-ignores]
+"*/__init__.py" = ["F401"]
+"*/tests/*" = [
+    # asserts are encouraged in pytest
+    "S101",
+    # return annotations don't add value for test functions
+    "ANN201",
+    # docstrings are overkill for test functions
+    "D103",
+    "D100",
+]
 
 [tool.mypy]
 strict = true

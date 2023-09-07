@@ -12,6 +12,7 @@
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)][poetry]
 
 [pypi status]: https://pypi.org/project/{{cookiecutter.project_name}}/
@@ -36,7 +37,7 @@
 You can install _{{cookiecutter.friendly_name}}_ via [pip] from [PyPI]:
 
 ```console
-$ pip install {{cookiecutter.project_name}}
+pip install {{cookiecutter.project_name}}
 ```
 
 ## Usage

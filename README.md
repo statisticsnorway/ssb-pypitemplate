@@ -11,10 +11,13 @@
 [![Coverage][sonarcov badge]][sonar page]<br>
 [![pre-commit enabled][pre-commit badge]][pre-commit project]
 [![Black codestyle][black badge]][black project]
+[![Ruff][ruff badge]][ruff project]
 [![Contributor Covenant][contributor covenant badge]][code of conduct]
 
 [black badge]: https://img.shields.io/badge/code%20style-black-000000.svg
 [black project]: https://github.com/psf/black
+[ruff badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+[ruff project]: https://github.com/astral-sh/ruff
 [calver badge]: https://img.shields.io/badge/calver-YYYY.MM.DD-22bfda.svg
 [calver]: https://calver.org/
 [code of conduct]: https://github.com/statisticsnorway/ssb-pypitemplate/blob/main/CODE_OF_CONDUCT.md
@@ -85,7 +88,7 @@ cruft update
 
 - Packaging and dependency management with [Poetry]
 - Test automation with [Nox]
-- Linting with [pre-commit] and [Flake8]
+- Linting with [pre-commit] and [ruff]
 - Continuous integration with [GitHub Actions]
 - Documentation with [Sphinx], [MyST], and [Read the Docs] using the [furo] theme
 - Automated uploads to [PyPI] and [TestPyPI]
@@ -116,7 +119,6 @@ The template supports Python 3.9, 3.10 and 3.11.
 [coverage.py]: https://coverage.readthedocs.io/
 [cruft]: https://cruft.github.io/cruft/
 [dependabot]: https://github.com/dependabot/dependabot-core
-[flake8]: http://flake8.pycqa.org
 [furo]: https://pradyunsg.me/furo/
 [github actions]: https://github.com/features/actions
 [github labeler]: https://github.com/marketplace/actions/github-labeler
@@ -132,12 +134,13 @@ The template supports Python 3.9, 3.10 and 3.11.
 [pytest]: https://docs.pytest.org/en/latest/
 [pyupgrade]: https://github.com/asottile/pyupgrade
 [read the docs]: https://readthedocs.org/
-[release drafter]: https://github.com/release-drafter/release-drafter
-[safety]: https://github.com/pyupio/safety
-[sphinx]: http://www.sphinx-doc.org/
-[sphinx-click]: https://sphinx-click.readthedocs.io/
-[testpypi]: https://test.pypi.org/
-[typeguard]: https://github.com/agronholm/typeguard
-[xdoctest]: https://github.com/Erotemic/xdoctest
+[release drafter]: <https://github.com/release-drafter/release-drafter>
+[ruff]: <https://beta.ruff.rs>
+[safety]: <https://github.com/pyupio/safety>
+[sphinx]: <http://www.sphinx-doc.org/>
+[sphinx-click]: <https://sphinx-click.readthedocs.io/>
+[testpypi]: <https://test.pypi.org/>
+[typeguard]: <https://github.com/agronholm/typeguard>
+[xdoctest]: <https://github.com/Erotemic/xdoctest>
 
 <!-- features-end -->
