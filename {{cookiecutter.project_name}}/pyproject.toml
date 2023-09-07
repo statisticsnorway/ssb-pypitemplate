@@ -70,8 +70,10 @@ exclude = [
     ".eggs",
     ".tox",
     ".ipynb_checkpoints",
+    "noxfile.py",
+    "docs/conf.py",
 ]
-ignore = ["A003", "B008", "E501"]
+ignore = ["A003", "B008", "E501", "D211", "D213", "D417"]
 
 # Aggressively activate all rules.
 # These may be customized as desired: https://beta.ruff.rs/docs/rules/
@@ -85,7 +87,7 @@ classmethod-decorators = ["classmethod", "validator", "root_validator"]
 
 [tool.ruff.per-file-ignores]
 "*/__init__.py" = ["F401"]
-"*/tests/*" = [
+"**/tests/*" = [
     # asserts are encouraged in pytest
     "S101",
     # return annotations don't add value for test functions
