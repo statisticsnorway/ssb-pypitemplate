@@ -1,6 +1,14 @@
 default_language_version:
     python: python3.11
 repos:
+  - repo: local
+    hooks:
+    - id: darglint
+      name: darglint
+      entry: darglint
+      language: system
+      types: [python]
+      stages: [manual]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
