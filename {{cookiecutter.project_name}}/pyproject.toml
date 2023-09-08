@@ -1,8 +1,4 @@
 [tool.poetry]
-
-{% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') -%}
-
-{% endif -%}
 name = "{{cookiecutter.project_name}}"
 version = "{{cookiecutter.version}}"
 description = "{{cookiecutter.friendly_name}}"
@@ -12,7 +8,9 @@ readme = "README.md"
 homepage = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}"
 repository = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}"
 documentation = "https://{{cookiecutter.github_organization}}.github.io/{{cookiecutter.project_name}}"
+{% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') -%}
 packages = [{ include = "{{cookiecutter.package_name}}", from = "src" }]
+{% endif -%}
 classifiers = ["{{cookiecutter.development_status}}"]
 
 [tool.poetry.urls]
@@ -23,7 +21,7 @@ python = "^3.9"
 click = ">=8.0.1"
 
 [tool.poetry.group.dev.dependencies]
-Pygments = ">=2.10.0"
+pygments = ">=2.10.0"
 black = { extras = ["jupyter"], version = ">=23.1.0" }
 coverage = { extras = ["toml"], version = ">=6.2" }
 furo = ">=2021.11.12"
