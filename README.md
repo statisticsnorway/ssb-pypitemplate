@@ -134,13 +134,13 @@ The template supports Python 3.9, 3.10 and 3.11.
 [pytest]: https://docs.pytest.org/en/latest/
 [pyupgrade]: https://github.com/asottile/pyupgrade
 [read the docs]: https://readthedocs.org/
-[release drafter]: <https://github.com/release-drafter/release-drafter>
-[ruff]: <https://beta.ruff.rs>
-[safety]: <https://github.com/pyupio/safety>
-[sphinx]: <http://www.sphinx-doc.org/>
-[sphinx-click]: <https://sphinx-click.readthedocs.io/>
-[testpypi]: <https://test.pypi.org/>
-[typeguard]: <https://github.com/agronholm/typeguard>
-[xdoctest]: <https://github.com/Erotemic/xdoctest>
+[release drafter]: https://github.com/release-drafter/release-drafter
+[ruff]: https://beta.ruff.rs
+[safety]: https://github.com/pyupio/safety
+[sphinx]: http://www.sphinx-doc.org/
+[sphinx-click]: https://sphinx-click.readthedocs.io/
+[testpypi]: https://test.pypi.org/
+[typeguard]: https://github.com/agronholm/typeguard
+[xdoctest]: https://github.com/Erotemic/xdoctest
 
 <!-- features-end -->
