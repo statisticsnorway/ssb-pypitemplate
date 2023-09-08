@@ -74,7 +74,7 @@ repos:
       stages: [manual]
     - id: ruff
       name: ruff
-      entry: ruffq
+      entry: ruff
       language: system
       types_or: [python, jupyter]
       require_serial: true
