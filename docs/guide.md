@@ -2641,7 +2641,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [git hook]: https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
 [git]: https://www.git-scm.com
 [github actions artifacts]: https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
-[github actions runners]: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
+[github actions runners]: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
 [github actions syntax]: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 [github actions]: https://github.com/features/actions
 [github labeler]: https://github.com/marketplace/actions/github-labeler
