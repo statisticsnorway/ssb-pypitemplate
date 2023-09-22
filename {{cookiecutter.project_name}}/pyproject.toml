@@ -60,15 +60,9 @@ fail_under = 80
 
 [tool.ruff]
 force-exclude = true # Apply excludes to pre-commit
-exclude = [
-    ".git",
+extend-exclude = [
     "__pycache__",
     "old",
-    "build",
-    "dist",
-    ".venv",
-    ".eggs",
-    ".tox",
     ".ipynb_checkpoints",
     "noxfile.py",
     "docs/conf.py",
