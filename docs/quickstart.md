@@ -52,13 +52,12 @@ $ git add .
 $ git commit
 ```
 
-## Running
+## Installing the environment
 
-Run the command-line interface from the source tree:
+Install the virtual environment using the command:
 
 ```console
-$ poetry update
-$ poetry run <project>
+$ poetry install
 ```
 
 ## Testing
@@ -79,6 +78,12 @@ Install the pre-commit hooks:
 
 ```console
 $ nox -s pre-commit -- install
+```
+
+Run the tests with another python version:
+
+```console
+$ nox --force-python 3.11
 ```
 
 ## Continuous Integration
@@ -135,8 +140,8 @@ $ nox -s pre-commit -- install
    And then click the _Create project_ button.
 4. Choose Analysis Method: _With GitHub Actions_.
 5. Follow the description to add a GitHub repository secret for the `SONAR_TOKEN`.
-6. That's it. The next time code are pushed to a branch or merged to main on GitHub,
-   the code will be analysed by SonarCloud.
+6. That's it. The next time a pull request is opened or a branch or merged to main
+   on GitHub, the code will be analysed by SonarCloud.
 
 ## Releasing
 
