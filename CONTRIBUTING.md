@@ -120,20 +120,18 @@ To publish the release, follow these steps:
 1. Click the Releases heading on the GitHub repo and check that the Release Draft is
    OK. Edit if necessary.
 2. On a clean main-branch in the repo, run the following command:
-   `nox -s prepare_release -- --token=<your github token>` or
-   `nox -s prepare_release -- --token=<your github token> <tag>`
+   `nox -s prepare-release -- --token=<your github token>`
+   It will update the current release version in the documentation to the current
+   date. Example: 2023.10.20
 3. Verify that the pull request checks are OK (green).
 4. Run the following command:
-   `nox -s publish_release -- --token=<your github token>` or
-   `nox -s prepare_release -- --token=<your github token> <tag>`
-
-Old version:
-
-1. Click **Edit** next to the draft release.
-2. Enter a tag with the new version.
-3. Enter the release title, also the new version.
-4. Edit the release description, if required.
-5. Click **Publish Release**.
+   `nox -s publish-release -- --token=<your github token>`
+5. If you need multiple releases a day or a custom tag, use the following commands
+   instead of the commands in 2 and 4:
+   ```shell
+   nox -s prepare-release -- --token=<your github token> <tag>
+   nox -s prepare-release -- --token=<your github token> <tag>
+   ```
 
 Version numbers adhere to [Calendar Versioning],
 of the form `YYYY.MM.DD`.
@@ -141,20 +139,20 @@ of the form `YYYY.MM.DD`.
 After publishing the release, the following automated steps are triggered:
 
 - The Git tag is applied to the repository.
-- [Read the Docs] builds a new stable version of the documentation.
+- [GitHub Pages] builds a new stable version of the documentation.
 
 [calendar versioning]: https://calver.org/
 [continuous integration]: https://cookiecutter-hypermodern-python.readthedocs.io/en/stable/quickstart.html#continuous-integration
 [cookiecutter]: https://cookiecutter.readthedocs.io/
 [documentation]: https://cookiecutter-hypermodern-python.readthedocs.io/
 [github]: https://github.com/statisticsnorway/ssb-pypitemplate
+[github pages]: https://statisticsnorway.github.io/ssb-pypitemplate/
 [issue tracker]: https://github.com/statisticsnorway/ssb-pypitemplate/issues
 [mit license]: https://opensource.org/license/mit/
 [nox]: https://nox.thea.codes/
 [nox-poetry]: https://nox-poetry.readthedocs.io/
 [poetry]: https://python-poetry.org/
 [pull request]: https://github.com/statisticsnorway/ssb-pypitemplate/pulls
-[read the docs]: https://cookiecutter-hypermodern-python.readthedocs.io/
 [source code]: https://github.com/statisticsnorway/ssb-pypitemplate
 [user guide]: https://cookiecutter-hypermodern-python.readthedocs.io/en/latest/guide.html#how-to-test-your-project
 

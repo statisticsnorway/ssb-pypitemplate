@@ -17,7 +17,7 @@
 
 [pypi status]: https://pypi.org/project/{{cookiecutter.project_name}}/
 [documentation]: https://{{cookiecutter.github_organization}}.github.io/{{cookiecutter.project_name}}
-[tests]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/actions?workflow=Tests
+[tests]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/actions/workflows/tests.yml/badge.svg
 [sonarcov]: https://sonarcloud.io/summary/overall?id={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}
 [sonarquality]: https://sonarcloud.io/summary/overall?id={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}
 [pre-commit]: https://github.com/pre-commit/pre-commit
