@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/pypi/l/{{cookiecutter.project_name}})][license]
 
 [![Documentation](https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/actions/workflows/docs.yml/badge.svg)][documentation]
-[![Tests](https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/workflows/Tests/badge.svg)][tests]
+[![Tests](https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/actions/workflows/tests.yml/badge.svg)][tests]
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}&metric=coverage)][sonarcov]
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}&metric=alert_status)][sonarquality]
 
@@ -17,7 +17,8 @@
 
 [pypi status]: https://pypi.org/project/{{cookiecutter.project_name}}/
 [documentation]: https://{{cookiecutter.github_organization}}.github.io/{{cookiecutter.project_name}}
-[tests]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/actions/workflows/tests.yml/badge.svg
+[tests]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/actions?workflow=Tests
+
 [sonarcov]: https://sonarcloud.io/summary/overall?id={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}
 [sonarquality]: https://sonarcloud.io/summary/overall?id={{cookiecutter.github_organization}}_{{cookiecutter.project_name}}
 [pre-commit]: https://github.com/pre-commit/pre-commit
