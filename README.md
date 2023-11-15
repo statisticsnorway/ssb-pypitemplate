@@ -95,7 +95,7 @@ cruft update
 - Automated release notes with [Release Drafter]
 - Automated dependency updates with [Dependabot]
 - Code formatting with [Black] and [Prettier]
-- Import sorting with [isort]
+- Import sorting with [ruff]
 - Testing with [pytest]
 - Code coverage with [Coverage.py]
 - Coverage reporting with [SonarCloud]
@@ -103,7 +103,7 @@ cruft update
 - Static type-checking with [mypy]
 - Runtime type-checking with [Typeguard]
 - Automated Python syntax upgrades with [ruff]
-- Security audit with [ruff] and [Safety]
+- Security audit with [ruff]
 - Check documentation examples with [xdoctest]
 - Generate API documentation with [autodoc] and [napoleon]
 - Generate command-line reference with [sphinx-click]
@@ -133,7 +133,6 @@ The template supports Python 3.9, 3.10 and 3.11.
 [pytest]: https://docs.pytest.org/en/latest/
 [release drafter]: https://github.com/release-drafter/release-drafter
 [ruff]: https://beta.ruff.rs
-[safety]: https://github.com/pyupio/safety
 [sonarcloud]: https://www.sonarsource.com/products/sonarcloud/
 [sphinx]: http://www.sphinx-doc.org/
 [sphinx-click]: https://sphinx-click.readthedocs.io/

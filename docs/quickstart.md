@@ -57,7 +57,7 @@ $ git commit
 Install the virtual environment using the command:
 
 ```console
-$ poetry install
+$ poetry update
 ```
 
 ## Testing
@@ -80,7 +80,7 @@ Install the pre-commit hooks:
 $ nox -s pre-commit -- install
 ```
 
-Run the tests with another python version:
+If you want to run the tests with a non-default python version:
 
 ```console
 $ nox --force-python 3.11

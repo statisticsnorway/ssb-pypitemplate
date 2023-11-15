@@ -75,16 +75,6 @@ The project template is centered around the following tools:
 [1]: https://python-poetry.org/
 [2]: https://nox.thea.codes/
 [3]: https://github.com/features/actions
-
-### Why is this Python template called "hypermodern"?
-
-[Hypermodernism] is a school of chess that dates back to more than a century ago.
-If this setup ever goes out of fashion,
-I can pretend it was my secret plan from the start.
-All images on the
-[associated blog][hypermodern python] show
-[past visions][retrofuturism] of the future.
-
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
 [hypermodern python]: https://medium.com/@cjolowicz/hypermodern-python-d44485d9d769
 [hypermodernism]: https://en.wikipedia.org/wiki/Hypermodernism_(chess)
