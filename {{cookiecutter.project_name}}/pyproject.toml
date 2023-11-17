@@ -84,6 +84,7 @@ select = ["ALL"]
 select = [
     "A",    # prevent using keywords that clobber python builtins
     "B",    # bugbear: security warnings
+    "D",    # documentation
     "E",    # pycodestyle
     "F",    # pyflakes
     "ISC",  # implicit string concatenation
