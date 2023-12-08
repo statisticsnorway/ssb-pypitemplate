@@ -5,7 +5,7 @@ from datetime import datetime
 project = "SSB PyPI Template"
 author = "Claudio Jolowicz and Statistics Norway"
 copyright = f"{datetime.now().year}, {author}"
-extensions = ["sphinx.ext.intersphinx", "myst_parser"]
+extensions = ["sphinx.ext.intersphinx", "myst_parser", "sphinx_copybutton"]
 intersphinx_mapping = {"mypy": ("https://mypy.readthedocs.io/en/stable/", None)}
 language = "en"
 html_theme = "furo"

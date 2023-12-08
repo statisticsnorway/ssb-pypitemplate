@@ -124,7 +124,7 @@ your system already has [bash] and [curl] installed.)
 Install [pyenv] like this:
 
 ```console
-$ curl https://pyenv.run | bash
+curl https://pyenv.run | bash
 ```
 
 Add the following lines to your `~/.bashrc`:
@@ -142,9 +142,9 @@ Install the latest point release of every supported Python version.
 This project template supports Python 3.9, 3.10 and 3.11.
 
 ```console
-$ pyenv install 3.9.18
-$ pyenv install 3.10.13
-$ pyenv install 3.11.6
+pyenv install 3.9.18
+pyenv install 3.10.13
+pyenv install 3.11.6
 ```
 
 After creating your project (see [below](creating-a-project)),
@@ -152,7 +152,7 @@ you can make these Python versions accessible in the project directory,
 using the following command:
 
 ```console
-$ pyenv local 3.11.6 3.10.13 3.9.18
+pyenv local 3.11.6 3.10.13 3.9.18
 ```
 
 The first version listed is the one used when you type plain `python`.
@@ -180,28 +180,28 @@ You need four tools to use this template:
 Install [Cruft] using pipx:
 
 ```console
-$ pipx install cruft[pyproject]
+pipx install cruft[pyproject]
 ```
 
 Install [Poetry] using pipx:
 
 ```console
-$ pipx install poetry
+pipx install poetry
 ```
 
 Install [Nox] and [nox-poetry] using pipx:
 
 ```console
-$ pipx install nox
-$ pipx inject nox nox-poetry
+pipx install nox
+pipx inject nox nox-poetry
 ```
 
 Remember to upgrade these tools regularly:
 
 ```console
-$ pipx upgrade cruft
-$ pipx upgrade --include-injected nox
-$ pipx upgrade poetry
+pipx upgrade cruft
+pipx upgrade --include-injected nox
+pipx upgrade poetry
 ```
 
 ## Project creation
@@ -215,7 +215,7 @@ by pointing Cruft to its [GitHub repository][ssb pypi template].
 Use the `--checkout` option with the [current stable release][2023.11.17]:
 
 ```console
-$ cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.11.17
+cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.11.17
 ```
 
 Cruft downloads the template,
@@ -305,17 +305,20 @@ In the commands below,
 replace `<project>` by the name of your project.
 
 ```console
-$ cd <project>
-$ git init
-$ git add .
-$ git commit
+cd <project>
+```
+
+```console
+git init
+git add .
+git commit
 ```
 
 Use the following command to ensure your default branch is called `main`,
 which is the [default branch name for GitHub repositories][github renaming].
 
 ```console
-$ git branch --move --force main
+git branch --move --force main
 ```
 
 Create an empty repository on [GitHub],
@@ -331,8 +334,8 @@ In the commands below, replace `<username>` by your GitHub username,
 and `<project>` by the name of your project.
 
 ```console
-$ git remote add origin git@github.com:<username>/<project>.git
-$ git push --set-upstream origin main
+git remote add origin git@github.com:<username>/<project>.git
+git push --set-upstream origin main
 ```
 
 Now may be a good time to set up Continuous Integration for your repository.
@@ -535,15 +538,15 @@ src
   This allows you to invoke the command-line interface using only the project name:
 
   ```console
-  $ poetry run <project>  # during development
-  $ <project>             # after installation
+  poetry run <project>  # during development
+  <project>             # after installation
   ```
 
   The command-line interface can also be invoked
   by specifying a Python interpreter and the package name:
 
   ```console
-  $ python -m <package> [<options>]
+  python -m <package> [<options>]
   ```
 
 `functions.py`
@@ -894,14 +897,14 @@ Use the command [poetry show] to
 see the full list of direct and indirect dependencies of your package:
 
 ```console
-$ poetry show
+poetry show
 ```
 
 Use the command [poetry add] to add a dependency for your package:
 
 ```console
-$ poetry add foobar         # for core dependencies
-$ poetry add -G dev foobar  # for development dependencies
+poetry add foobar         # for core dependencies
+poetry add -G dev foobar  # for development dependencies
 ```
 
 :::{important}
@@ -916,13 +919,13 @@ See [Version constraints](version-constraints) for more details.
 Use the command [poetry remove] to remove a dependency from your package:
 
 ```console
-$ poetry remove foobar
+poetry remove foobar
 ```
 
 Use the command [poetry update] to upgrade the dependency to a new release:
 
 ```console
-$ poetry update foobar
+poetry update foobar
 ```
 
 :::{note}
@@ -952,7 +955,7 @@ into Poetry's virtual environment
 using the command [poetry install].
 
 ```console
-$ poetry install
+poetry install
 ```
 
 This command performs a so-called [editable install] of your package:
@@ -977,9 +980,9 @@ for every Python version supported by your project,
 and easily switch between them:
 
 ```console
-$ poetry env use 3.9
-$ poetry env use 3.10
-$ poetry env use 3.11
+poetry env use 3.9
+poetry env use 3.10
+poetry env use 3.11
 ```
 
 Only one Poetry environment can be active at any time.
@@ -990,19 +993,19 @@ Install your package with `poetry install` into each environment after creating 
 Use the command `poetry env list` to list the available environments:
 
 ```console
-$ poetry env list
+poetry env list
 ```
 
 Use the command `poetry env remove` to remove an environment:
 
 ```console
-$ poetry env remove <version>
+poetry env remove <version>
 ```
 
 Use the command `poetry env info` to show information about the active environment:
 
 ```console
-$ poetry env info
+poetry env info
 ```
 
 ### Running commands
@@ -1011,19 +1014,19 @@ You can run an interactive Python session inside the active environment
 using the command [poetry run]:
 
 ```console
-$ poetry run python
+poetry run python
 ```
 
 The same command allows you to invoke the command-line interface of your project:
 
 ```console
-$ poetry run <project>
+poetry run <project>
 ```
 
 You can also run developer tools, such as [pytest]:
 
 ```console
-$ poetry run pytest
+poetry run pytest
 ```
 
 While it is handy to have developer tools available in the Poetry environment,
@@ -1046,8 +1049,8 @@ from the command line,
 using the following Poetry commands:
 
 ```console
-$ poetry build
-$ poetry publish
+poetry build
+poetry publish
 ```
 
 Building the package is done with the [python build] command,
@@ -1070,9 +1073,9 @@ Once your package is on PyPI,
 others can install it with [pip], [pipx], or Poetry:
 
 ```console
-$ pip install <project>
-$ pipx install <project>
-$ poetry add <project>
+pip install <project>
+pipx install <project>
+poetry add <project>
 ```
 
 While [pip] is the workhorse of the Python packaging ecosystem,
@@ -1121,7 +1124,7 @@ for example the session used to build the documentation.
 If you invoke Nox by itself, it will run the full test suite:
 
 ```console
-$ nox
+nox
 ```
 
 This includes tests, linters, type checks, and more.
@@ -1138,14 +1141,14 @@ You can also run a specific Nox session, using the `--session` option.
 For example, build the documentation like this:
 
 ```console
-$ nox --session=docs
+nox --session=docs
 ```
 
 Print a list of the available Nox sessions
 using the `--list-sessions` option:
 
 ```console
-$ nox --list-sessions
+nox --list-sessions
 ```
 
 Nox creates virtual environments from scratch on each invocation.
@@ -1156,14 +1159,14 @@ For example, the following may be more practical during development
 (this will only run tests and type checks, on the current Python release):
 
 ```console
-$ nox -p 3.11 -rs tests mypy
+nox -p 3.11 -rs tests mypy
 ```
 
 Many sessions accept additional options after `--` separator.
 For example, the following command runs a specific test module:
 
 ```console
-$ nox --session=tests -- tests/test_main.py
+nox --session=tests -- tests/test_main.py
 ```
 
 ### Overview of Nox sessions
@@ -1226,7 +1229,7 @@ The following table gives an overview of the available Nox sessions:
 Build the documentation using the Nox session `docs`:
 
 ```console
-$ nox --session=docs
+nox --session=docs
 ```
 
 The docs session runs the command `sphinx-autobuild` to generate the HTML documentation from the Sphinx directory.
@@ -1240,7 +1243,7 @@ Use the `--` separator to pass additional options.
 For example, to treat warnings as errors and run in nit-picky mode:
 
 ```console
-$ nox --session=docs -- -W -n docs docs/_build
+nox --session=docs -- -W -n docs docs/_build
 ```
 
 This Nox session always runs with the current major release of Python.
@@ -1266,7 +1269,7 @@ Learn more about it in the section [Type-checking with mypy](type-checking-with-
 Run mypy using Nox:
 
 ```console
-$ nox --session=mypy
+nox --session=mypy
 ```
 
 You can also run the type checker with a specific Python version.
@@ -1274,14 +1277,14 @@ For example, the following command runs mypy
 using the current stable release of Python:
 
 ```console
-$ nox --session=mypy --python=3.11
+nox --session=mypy --python=3.11
 ```
 
 Use the separator `--` to pass additional options and arguments to `mypy`.
 For example, the following command type-checks only the `__main__` module:
 
 ```console
-$ nox --session=mypy -- src/<package>/__main__.py
+nox --session=mypy -- src/<package>/__main__.py
 ```
 
 (the-pre-commit-session)=
@@ -1294,7 +1297,7 @@ Learn more about it in the section [Linting with pre-commit](linting-with-pre-co
 Run pre-commit from Nox using the `pre-commit` session:
 
 ```console
-$ nox --session=pre-commit
+nox --session=pre-commit
 ```
 
 This session always runs with the current stable release of Python.
@@ -1304,7 +1307,7 @@ For example, the following command installs the pre-commit hooks,
 so they run automatically on every commit you make:
 
 ```console
-$ nox --session=pre-commit -- install
+nox --session=pre-commit -- install
 ```
 
 (the-safety-session)=
@@ -1320,7 +1323,7 @@ for consumption by Safety.
 Run [Safety] using the `safety` session:
 
 ```console
-$ nox --session=safety
+nox --session=safety
 ```
 
 This session always runs with the current stable release of Python.
@@ -1335,7 +1338,7 @@ Learn more about it in the section [The test suite](the-test-suite).
 Run the test suite using the Nox session `tests`:
 
 ```console
-$ nox --session=tests
+nox --session=tests
 ```
 
 The tests session runs the test suite against the installed code.
@@ -1348,14 +1351,14 @@ For example, the following command runs the test suite
 using the current stable release of Python:
 
 ```console
-$ nox --session=tests --python=3.11
+nox --session=tests --python=3.11
 ```
 
 Use the separator `--` to pass additional options to `pytest`.
 For example, the following command runs only the test case `test_main_succeeds`:
 
 ```console
-$ nox --session=tests -- -k test_main_succeeds
+nox --session=tests -- -k test_main_succeeds
 ```
 
 The tests session also installs [pygments], a Python syntax highlighter.
@@ -1386,7 +1389,7 @@ This allows it to combine the coverage data for different Python versions.
 You can also run the session manually:
 
 ```console
-$ nox --session=coverage
+nox --session=coverage
 ```
 
 Use the `--` separator to pass arguments to the `coverage` command.
@@ -1394,7 +1397,7 @@ For example, here's how you would generate an HTML report
 in the `htmlcov` directory:
 
 ```console
-$ nox -rs coverage -- html
+nox -rs coverage -- html
 ```
 
 [Coverage.py] is configured in the `pyproject.toml` file,
@@ -1428,7 +1431,7 @@ against the `Generator` annotation.
 Run [Typeguard] using Nox:
 
 ```console
-$ nox --session=typeguard
+nox --session=typeguard
 ```
 
 The typeguard session runs the test suite with runtime type-checking enabled.
@@ -1441,7 +1444,7 @@ Use the separator `--` to pass additional options and arguments to pytest.
 For example, the following command runs only tests for the `__main__` module:
 
 ```console
-$ nox --session=typeguard -- tests/test_main.py
+nox --session=typeguard -- tests/test_main.py
 ```
 
 :::{note}
@@ -1467,7 +1470,7 @@ This serves multiple purposes:
 Run the tool using the Nox session `xdoctest`:
 
 ```console
-$ nox --session=xdoctest
+nox --session=xdoctest
 ```
 
 You can also run the test suite with a specific Python version.
@@ -1475,7 +1478,7 @@ For example, the following command runs the examples
 using the current stable release of Python:
 
 ```console
-$ nox --session=xdoctest --python=3.11
+nox --session=xdoctest --python=3.11
 ```
 
 By default, the Nox session uses the `all` subcommand to run all examples.
@@ -1483,7 +1486,7 @@ You can also list examples using the `list` subcommand,
 or run specific examples:
 
 ```console
-$ nox --session=xdoctest -- list
+nox --session=xdoctest -- list
 ```
 
 (linting-with-pre-commit)=
@@ -1505,13 +1508,13 @@ for details about the configuration file.
 pre-commit runs in a Nox session every time you invoke `nox`:
 
 ```console
-$ nox
+nox
 ```
 
 Run the pre-commit session explicitly like this:
 
 ```console
-$ nox --session=pre-commit
+nox --session=pre-commit
 ```
 
 The session is described in more detail in the section [The pre-commit session](the-pre-commit-session).
@@ -1526,7 +1529,7 @@ When invoked in this mode, pre-commit only runs on files staged for the commit.
 Install pre-commit as a Git hook by running the following command:
 
 ```console
-$ nox --session=pre-commit -- install
+nox --session=pre-commit -- install
 ```
 
 ### Managing hooks with pre-commit
@@ -1536,7 +1539,7 @@ run in isolated environments managed by pre-commit.
 To upgrade these hooks, use the [autoupdate][pre-commit autoupdate] command:
 
 ```console
-$ nox --session=pre-commit -- autoupdate
+nox --session=pre-commit -- autoupdate
 ```
 
 ### Python-language hooks
@@ -1627,7 +1630,7 @@ For example, consider a linter named `awesome-linter`.
 First, use Poetry to add the linter to your development dependencies:
 
 ```console
-$ poetry add --dev awesome-linter
+poetry add -G dev awesome-linter
 ```
 
 Next, update `noxfile.py` to add the linter to the pre-commit session:
@@ -2399,7 +2402,7 @@ First, make sure you have all the [requirements](installation) installed.
 Run the test suite using [Nox](using-Nox):
 
 ```console
-$ nox -r
+nox -r
 ```
 
 ### How to run your code
@@ -2407,19 +2410,19 @@ $ nox -r
 First, install the project and its dependencies to the Poetry environment:
 
 ```console
-$ poetry install
+poetry install
 ```
 
 Run an interactive session in the environment:
 
 ```console
-$ poetry run python
+poetry run python
 ```
 
 Invoke the command-line interface of your package:
 
 ```console
-$ poetry run <project>
+poetry run <project>
 ```
 
 ### How to make code changes
@@ -2439,20 +2442,20 @@ $ poetry run <project>
 Create a branch for your changes:
 
 ```console
-$ git switch --create my-topic-branch main
+git switch --create my-topic-branch main
 ```
 
 Create a series of small, single-purpose commits:
 
 ```console
-$ git add <files>
-$ git commit
+git add <files>
+git commit
 ```
 
 Push your branch to GitHub:
 
 ```console
-$ git push --set-upstream origin my-topic-branch
+git push --set-upstream origin my-topic-branch
 ```
 
 The push triggers the following automated steps:
@@ -2493,16 +2496,16 @@ In your local repository,
 update the main branch:
 
 ```console
-$ git switch main
-$ git pull origin main
+git switch main
+git pull origin main
 ```
 
 Optionally, remove the merged topic branch
 from the local repository as well:
 
 ```console
-$ git remote prune origin
-$ git branch --delete --force my-topic-branch
+git remote prune origin
+git branch --delete --force my-topic-branch
 ```
 
 The original commits remain accessible from the pull request
@@ -2522,10 +2525,10 @@ It is recommended to do this in a separate pull request:
 The individual steps for bumping the version are:
 
 ```console
-$ git switch --create release main
-$ poetry version <version>
-$ git commit --message="<project> <version>" pyproject.toml
-$ git push origin release
+git switch --create release main
+poetry version <version>
+git commit --message="<project> <version>" pyproject.toml
+git push origin release
 ```
 
 If you're not sure which version number to choose,

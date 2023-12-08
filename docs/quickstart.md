@@ -5,27 +5,27 @@
 Install [pipx]:
 
 ```console
-$ python -m pip install --user pipx
-$ python -m pipx ensurepath
+python -m pip install --user pipx
+python -m pipx ensurepath
 ```
 
 Install [cruft]:
 
 ```console
-$ pipx install cruft[pyproject]
+pipx install cruft[pyproject]
 ```
 
 Install [Poetry]:
 
 ```console
-$ pipx install poetry
+pipx install poetry
 ```
 
 Install [Nox] and [nox-poetry]:
 
 ```console
-$ pipx install nox
-$ pipx inject nox nox-poetry
+pipx install nox
+pipx inject nox nox-poetry
 ```
 
 [pipx] is preferred, but you can also install with `pip install --user`.
@@ -47,9 +47,9 @@ Change to the root directory of your new project,
 and create a Git repository:
 
 ```console
-$ git init
-$ git add .
-$ git commit
+git init
+git add .
+git commit
 ```
 
 ## Installing the environment
@@ -57,7 +57,7 @@ $ git commit
 Install the virtual environment using the command:
 
 ```console
-$ poetry update
+poetry update
 ```
 
 ## Testing
@@ -65,25 +65,25 @@ $ poetry update
 Run the full test suite:
 
 ```console
-$ nox
+nox
 ```
 
 List the available Nox sessions:
 
 ```console
-$ nox --list-sessions
+nox --list-sessions
 ```
 
 Install the pre-commit hooks:
 
 ```console
-$ nox -s pre-commit -- install
+nox -s pre-commit -- install
 ```
 
 If you want to run the tests with a non-default python version:
 
 ```console
-$ nox --force-python 3.11
+nox --force-python 3.11
 ```
 
 ## Continuous Integration
@@ -190,7 +190,7 @@ by applying labels to them, like this:
 [install-poetry.py]: https://install.python-poetry.org/
 [nox]: https://nox.thea.codes/
 [nox-poetry]: https://nox-poetry.readthedocs.io/
-[pipx]: https://pypa.github.io/pipx/
+[pipx]: https://pipx.pypa.io/
 [poetry]: https://python-poetry.org/
 [poetry version]: https://python-poetry.org/docs/cli/#version
 [pyenv]: https://github.com/pyenv/pyenv
