@@ -138,7 +138,7 @@ $ nox --force-python 3.11
    the _Set Up_ button.
 3. Set _new code_ to be based on _Number of days_ and 60 days (suggestion).
    And then click the _Create project_ button.
-4. Choose Analysis Method: _With GitHub Actions_.
+4. Select _Administration_, _Analysis Method_ and choose method: _With GitHub Actions_.
 5. Follow the description to add a GitHub repository secret for the `SONAR_TOKEN`.
 6. That's it. The next time a pull request is opened or a branch or merged to main
    on GitHub, the code will be analysed by SonarCloud.
