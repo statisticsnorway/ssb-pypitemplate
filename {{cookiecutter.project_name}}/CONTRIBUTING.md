@@ -13,7 +13,7 @@ Here is a list of important resources for contributors:
 
 [{{cookiecutter.license.replace("-", " ").lower()}} license]: https://opensource.org/licenses/{{cookiecutter.license}}
 [source code]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}
-[documentation]: https://{{cookiecutter.project_name}}.readthedocs.io/
+[documentation]: https://{{cookiecutter.github_organization}}.github.io/{{cookiecutter.project_name}}
 [issue tracker]: https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/issues
 
 ## How to report a bug

@@ -187,7 +187,6 @@ by applying labels to them, like this:
 [cruft]: https://cruft.github.io/cruft/
 [github]: https://github.com/
 [github pages]: https://docs.github.com/en/pages
-[install-poetry.py]: https://install.python-poetry.org/
 [nox]: https://nox.thea.codes/
 [nox-poetry]: https://nox-poetry.readthedocs.io/
 [pipx]: https://pipx.pypa.io/
@@ -195,7 +194,6 @@ by applying labels to them, like this:
 [poetry version]: https://python-poetry.org/docs/cli/#version
 [pyenv]: https://github.com/pyenv/pyenv
 [pypi]: https://pypi.org/
-[read the docs]: https://readthedocs.org/
 [sonarcloud]: https://www.sonarsource.com/products/sonarcloud/
 [testpypi]: https://test.pypi.org/
 [trusted publisher]: https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
