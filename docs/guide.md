@@ -61,7 +61,7 @@ Here is a detailed list of features for this Python template:
 
 The {{ SPT }} uses [Calendar Versioning] with a `YYYY.MM.DD` versioning scheme.
 
-The current stable release is [2023.12.11].
+The current stable release is [2024.1.18].
 
 (installation)=
 
@@ -212,10 +212,10 @@ pipx upgrade poetry
 
 Create a project from this template
 by pointing Cruft to its [GitHub repository][ssb pypi template].
-Use the `--checkout` option with the [current stable release][2023.12.11]:
+Use the `--checkout` option with the [current stable release][2024.1.18]:
 
 ```console
-cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.12.11
+cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2024.1.18
 ```
 
 Cruft downloads the template,
@@ -2570,7 +2570,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [.github/dependabot.yml]: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 [.gitignore]: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_ignoring
 [.readthedocs.yml]: https://docs.readthedocs.io/en/stable/config-file/v2.html
-[2023.12.11]: https://github.com/cjolowicz/cookiecutter-hypermodern-python/releases/tag/2023.12.11
+[2024.1.18]: https://github.com/cjolowicz/cookiecutter-hypermodern-python/releases/tag/2024.1.18
 [__main__]: https://docs.python.org/3/library/__main__.html
 [abstract syntax tree]: https://docs.python.org/3/library/ast.html
 [actions/cache]: https://github.com/actions/cache

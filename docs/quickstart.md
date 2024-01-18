@@ -37,7 +37,7 @@ It is recommended to set up Python 3.9, 3.10 and 3.11 using [pyenv].
 Generate a Python project:
 
 ```console
-cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.12.11
+cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2024.1.18
 ```
 
 Cruft downloads the template and asks you a series of questions about project variables.

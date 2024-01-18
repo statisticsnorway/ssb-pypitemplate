@@ -34,7 +34,7 @@
 [python version badge]: https://img.shields.io/pypi/pyversions/ssb-pypitemplate-instance
 [ghpages badge]: https://github.com/statisticsnorway/ssb-pypitemplate/actions/workflows/docs.yml/badge.svg
 [ghpages page]: https://statisticsnorway.github.io/ssb-pypitemplate/
-[status badge]: https://badgen.net/badge/status/beta/d8624d
+[status badge]: https://badgen.net/badge/status/stable/4bc51d
 
 <!-- badges-end -->
 
@@ -62,7 +62,7 @@ in [Statistics Norway].
 Use [Cruft] to create and update an instance of this template.
 
 ```console
-cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2023.12.11
+cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2024.1.18
 ```
 
 Cruft downloads the template, and asks you a series of questions about project variables,
