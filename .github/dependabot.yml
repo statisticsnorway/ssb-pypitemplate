@@ -1,18 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/{{cookiecutter.project_name}}"
-    schedule:
-      interval: "weekly"
-    versioning-strategy: lockfile-only
-    allow:
-      - dependency-type: "all"
-    open-pull-requests-limit: 99
-    groups:
-      ck-poetry-dependencies:
-        patterns:
-          - "*"
-  - package-ecosystem: "pip"
     directory: "/{{cookiecutter.project_name}}/.github/workflows"
     schedule:
       interval: "weekly"
