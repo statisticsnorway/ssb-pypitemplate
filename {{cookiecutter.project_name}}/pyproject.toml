@@ -53,6 +53,7 @@ tests = ["tests", "*/tests"]
 [tool.coverage.run]
 branch = true
 source = ["{{cookiecutter.package_name}}", "tests"]
+relative_files = true
 
 [tool.coverage.report]
 show_missing = true
@@ -128,15 +129,12 @@ classmethod-decorators = ["classmethod", "validator", "root_validator", "pydanti
 [tool.ruff.per-file-ignores]
 "*/__init__.py" = ["F401"]
 "**/tests/*" = [
-    # asserts are encouraged in pytest
-    "S101",
-    # return annotations don't add value for test functions
-    "ANN201",
-    # docstrings are overkill for test functions
+    "S101",    # asserts are encouraged in pytest
+    "ANN201",  # return annotations don't add value for test functions
+    "D100",    # docstrings are overkill for test functions
     "D101",
     "D102",
     "D103",
-    "D100",
 ]
 
 [build-system]
