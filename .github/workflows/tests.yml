@@ -29,16 +29,11 @@ jobs:
       - name: Install tools using pip
         working-directory: ssb-pypitemplate
         run: |
-          pwd
-          ls -al ${{ github.workspace }}
-          ls -al ${{ github.workspace }}/ssb-pypitemplate/
-          ls -al ${{ github.workspace }}/ssb-pypitemplate/.github/
-          ls -al ${{ github.workspace }}/ssb-pypitemplate/.github/workflows/
           pip install --constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt pip
-          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt cookiecutter
-          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox
-          pipx inject --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox nox-poetry
-          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt poetry
+          pipx install --pip-args=--constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt cookiecutter
+          pipx install --pip-args=--constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt nox
+          pipx inject --pip-args=--constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt nox nox-poetry
+          pipx install --pip-args=--constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt poetry
       - name: Generate project using Cookiecutter
         run: |
           cookiecutter --no-input ssb-pypitemplate project_name=ssb-library
