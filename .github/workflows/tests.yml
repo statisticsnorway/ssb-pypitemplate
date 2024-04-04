@@ -21,19 +21,21 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+           path: ssb-pypitemplate
       - uses: actions/setup-python@v5.0.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install tools using pip
+        working-directory: ssb-pypitemplate
         run: |
-          pip install --constraint=${{ github.workspace }}/.github/workflows/constraints.txt pip
+          pip install --constraint=$GITHUB_WORKSPACE/.github/workflows/constraints.txt pip
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt cookiecutter
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox
           pipx inject --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox nox-poetry
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt poetry
       - name: Generate project using Cookiecutter
         run: |
-          ls
           cookiecutter --no-input ssb-pypitemplate project_name=ssb-library
       - name: Create poetry.lock file
         run: poetry update --lock
