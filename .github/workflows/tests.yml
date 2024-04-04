@@ -27,7 +27,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install tools using pip
-        working-directory: ssb-pypitemplate
         run: |
           pip install --constraint=${{ github.workspace }}/.github/workflows/constraints.txt pip
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt cookiecutter
