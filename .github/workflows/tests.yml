@@ -30,8 +30,9 @@ jobs:
         working-directory: ssb-pypitemplate
         run: |
           ls -al ${{ github.workspace }}
-          ls -al ${{ github.workspace }}/.github/
-          ls -al ${{ github.workspace }}/.github/workflows/
+          ls -al ${{ github.workspace }}/ssb-pypitemplate/
+          ls -al ${{ github.workspace }}/ssb-pypitemplate/.github/
+          ls -al ${{ github.workspace }}/ssb-pypitemplate/.github/workflows/
           pip install --constraint=${{ github.workspace }}/.github/workflows/constraints.txt pip
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt cookiecutter
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox
