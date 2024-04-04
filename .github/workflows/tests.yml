@@ -30,6 +30,7 @@ jobs:
         working-directory: ssb-pypitemplate
         run: |
           root_workspace=$(${{ github.workspace }} | sed 's|.*/||')
+          echo $root_workspace
           pip install --constraint=${root_workspace}/.github/workflows/constraints.txt pip
           pipx install --pip-args=--constraint=${root_workspace}/.github/workflows/constraints.txt cookiecutter
           pipx install --pip-args=--constraint=${root_workspace}/.github/workflows/constraints.txt nox
