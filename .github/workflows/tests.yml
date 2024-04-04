@@ -33,7 +33,7 @@ jobs:
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt poetry
       - name: Generate project using Cookiecutter
         run: |
-          cd ssb-pypitemplate
+          ls
           cookiecutter --no-input ssb-pypitemplate project_name=ssb-library
       - name: Create poetry.lock file
         run: poetry update --lock
