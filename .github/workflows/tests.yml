@@ -32,7 +32,9 @@ jobs:
           pipx inject --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox nox-poetry
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt poetry
       - name: Generate project using Cookiecutter
-        run: cookiecutter --no-input ssb-pypitemplate project_name=ssb-library
+        run: |
+          cd ssb-pypitemplate
+          cookiecutter --no-input ssb-pypitemplate project_name=ssb-library
       - name: Create poetry.lock file
         run: poetry update --lock
         working-directory: ssb-library
