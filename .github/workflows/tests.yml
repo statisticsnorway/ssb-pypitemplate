@@ -31,10 +31,10 @@ jobs:
         run: |
           root_workspace=$(${{ github.workspace }} | sed 's|.*/||')
           pip install --constraint=${root_workspace}/.github/workflows/constraints.txt pip
-          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt cookiecutter
-          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox
-          pipx inject --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox nox-poetry
-          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt poetry
+          pipx install --pip-args=--constraint=${root_workspace}/.github/workflows/constraints.txt cookiecutter
+          pipx install --pip-args=--constraint=${root_workspace}/.github/workflows/constraints.txt nox
+          pipx inject --pip-args=--constraint=${root_workspace}/.github/workflows/constraints.txt nox nox-poetry
+          pipx install --pip-args=--constraint=${root_workspace}/.github/workflows/constraints.txt poetry
       - name: Generate project using Cookiecutter
         run: |
           cookiecutter --no-input ssb-pypitemplate project_name=ssb-library
