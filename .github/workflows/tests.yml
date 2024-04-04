@@ -29,11 +29,11 @@ jobs:
       - name: Install tools using pip
         working-directory: ssb-pypitemplate
         run: |
-          pip install --constraint=.github/workflows/constraints.txt pip
-          pipx install --pip-args=--constraint=.github/workflows/constraints.txt cookiecutter
-          pipx install --pip-args=--constraint=.github/workflows/constraints.txt nox
-          pipx inject --pip-args=--constraint=.github/workflows/constraints.txt nox nox-poetry
-          pipx install --pip-args=--constraint=.github/workflows/constraints.txt poetry
+          pip install --constraint=${{ github.workspace }}/.github/workflows/constraints.txt pip
+          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt cookiecutter
+          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox
+          pipx inject --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox nox-poetry
+          pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt poetry
       - name: Generate project using Cookiecutter
         run: cookiecutter --no-input ssb-pypitemplate project_name=ssb-library
       - name: Create poetry.lock file
@@ -98,8 +98,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: |
-          pip install --constraint=.github/workflows/constraints.txt pip
-          pip install --constraint=.github/workflows/constraints.txt nox
+          pip install --constraint=${{ github.workspace }}/.github/workflows/constraints.txt pip
+          pip install --constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox
       - name: Build documentation
         run: nox --force-color --session=docs
       - name: Check links
