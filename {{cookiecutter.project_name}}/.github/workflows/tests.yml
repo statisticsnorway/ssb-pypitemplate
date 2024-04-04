@@ -41,12 +41,12 @@ jobs:
         uses: actions/setup-python@v5.0.0
         with:
           python-version: ${{"{{"}} matrix.python {{"}}"}}
-
+{% raw %}
       - name: Upgrade pip
         run: |
           pip install -c ${{ github.workspace }}/.github/workflows/constraints.txt pip
           pip --version
-
+{% endraw %}
       - name: Upgrade pip in virtual environments
         shell: python
         run: |
@@ -55,18 +55,19 @@ jobs:
 
           with open(os.environ["GITHUB_ENV"], mode="a") as io:
               print(f"VIRTUALENV_PIP={pip.__version__}", file=io)
-
+{% raw %}
       - name: Install Poetry
         run: |
           pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" poetry
           poetry --version
-
+{% endraw %}
+{% raw %}
       - name: Install Nox
         run: |
           pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" nox
           pipx inject --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" nox nox-poetry
           nox --version
-
+{% endraw %}
       - name: Compute pre-commit cache key
         if: matrix.session == 'pre-commit'
         id: pre-commit-cache
@@ -123,23 +124,25 @@ jobs:
         uses: actions/setup-python@v5.0.0
         with:
           python-version: "3.12"
-
+{% raw %}
       - name: Upgrade pip
         run: |
           pip install -c ${{ github.workspace }}/.github/workflows/constraints.txt pip
           pip --version
-
+{% endraw %}
+{% raw %}
       - name: Install Poetry
         run: |
           pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" poetry
           poetry --version
-
+{% endraw %}
+{% raw %}
       - name: Install Nox
         run: |
           pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" nox
           pipx inject --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" nox nox-poetry
           nox --version
-
+{% endraw %}
       - name: Download coverage data
         uses: actions/download-artifact@v4
         with:

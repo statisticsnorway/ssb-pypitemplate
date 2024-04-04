@@ -27,10 +27,12 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
+{% raw %}
       - name: Install Poetry
         run: |
-          pipx install --pip-args "-c '${{ github.workspace }}'/.github/workflows/constraints.txt" poetry
+          pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" poetry
           poetry --version
+{% endraw %}
       - name: Set up Python
         uses: actions/setup-python@v5.0.0
         with:
