@@ -22,14 +22,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-           path: ssb-pypitemplate
+          path: ssb-pypitemplate
       - uses: actions/setup-python@v5.0.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install tools using pip
         working-directory: ssb-pypitemplate
         run: |
-          ls ${{ github.workspace }}
+          ls -al ${{ github.workspace }}
+          ls -al ${{ github.workspace }}/.github/
+          ls -al ${{ github.workspace }}/.github/workflows/
           pip install --constraint=${{ github.workspace }}/.github/workflows/constraints.txt pip
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt cookiecutter
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox
