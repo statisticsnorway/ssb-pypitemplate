@@ -29,7 +29,8 @@ jobs:
       - name: Install tools using pip
         working-directory: ssb-pypitemplate
         run: |
-          pip install --constraint=$GITHUB_WORKSPACE/.github/workflows/constraints.txt pip
+          root_workspace=$(${{ github.workspace }} | sed 's|.*/||')
+          pip install --constraint=${root_workspace}/.github/workflows/constraints.txt pip
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt cookiecutter
           pipx install --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox
           pipx inject --pip-args=--constraint=${{ github.workspace }}/.github/workflows/constraints.txt nox nox-poetry
