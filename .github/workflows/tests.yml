@@ -27,9 +27,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install tools using pip
-        working-directory: ssb-pypitemplate
+        working-directory: ${{ github.workspace }}/ssb-pypitemplate
         run: |
-          pip install --constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt pip
+          pwd
+          pip install --constraint=.github/workflows/constraints.txt pip
           pipx install --pip-args=--constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt cookiecutter
           pipx install --pip-args=--constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt nox
           pipx inject --pip-args=--constraint=${{ github.workspace }}/ssb-pypitemplate/.github/workflows/constraints.txt nox nox-poetry
