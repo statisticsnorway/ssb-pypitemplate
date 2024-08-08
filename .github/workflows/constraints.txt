@@ -1,8 +1,8 @@
-pip==24.0
+pip==24.2
 cookiecutter==2.6.0
 cutty==0.18.0
-nox==2024.3.2
+nox==2024.4.15
 nox-poetry==1.0.3
-poetry==1.8.2
-pre-commit==3.7.0
-virtualenv==20.25.1
+poetry==1.8.3
+pre-commit==3.8.0
+virtualenv==20.26.3
