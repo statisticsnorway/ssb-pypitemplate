@@ -1,5 +1,5 @@
 furo==2024.8.6
 myst-parser==4.0.0
 sphinx==8.0.2
-sphinx-autobuild==2024.4.16
+sphinx-autobuild==2024.9.3
 sphinx-copybutton==0.5.2
