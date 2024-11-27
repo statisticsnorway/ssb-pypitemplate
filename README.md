@@ -62,7 +62,7 @@ in [Statistics Norway].
 Use [Cruft] to create and update an instance of this template.
 
 ```console
-cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2024.11.26
+cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2024.11.27
 ```
 
 Cruft downloads the template, and asks you a series of questions about project variables,
