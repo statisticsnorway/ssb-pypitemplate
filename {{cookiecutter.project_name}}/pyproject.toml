@@ -45,6 +45,7 @@ sphinx-click = ">=3.0.2"
 typeguard = ">=2.13.3"
 xdoctest = { extras = ["colors"], version = ">=0.15.10" }
 myst-parser = { version = ">=0.16.1" }
+deptry = ">=0.23.0"
 
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.9"
@@ -70,6 +71,9 @@ fail_under = 50
 {% else %}
 fail_under = 20
 {% endif %}
+
+[tool.deptry.per_rule_ignores]
+DEP001 = ["nox", "nox_poetry"]  # packages available by default
 
 [tool.mypy]
 strict = true
@@ -116,7 +120,7 @@ select = [
 ]
 {% endif %}
 ignore = [
-    "ANN202", # Don't requiere return type annotation for private functions.
+    "ANN202", # Don't require return type annotation for private functions.
     "ANN401", # Allow type annotation with type Any.
     "D100",   # Supress undocumented-public-module. Only doc of public api required.
     "FBT001", # Allow boolean positional arguments in a function.

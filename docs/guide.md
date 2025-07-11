@@ -1992,6 +1992,12 @@ The following options are enabled for strictness and enhanced output:
 - {option}`show_column_numbers <mypy --show-column-numbers>`
 - {option}`show_error_context <mypy --show-error-context>`
 
+## Checking dependencies with deptry
+
+[deptry] is a command line tool to check for issues with dependencies in a Python project, such as unused or missing dependencies.
+
+Usage: `poetry run deptry .` from the root directory.
+
 (external-services)=
 
 ## External services
@@ -2610,6 +2616,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [dependabot docs]: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
 [dependabot issue 4435]: https://github.com/dependabot/dependabot-core/issues/4435
 [dependabot]: https://github.com/features/security/
+[deptry]: https://deptry.com/
 [dev-prod parity]: https://12factor.net/dev-prod-parity
 [editable install]: https://pip.pypa.io/en/stable/cli/pip_install/#install-editable
 [end-of-file-fixer]: https://github.com/pre-commit/pre-commit-hooks#end-of-file-fixer
