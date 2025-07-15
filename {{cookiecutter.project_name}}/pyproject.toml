@@ -10,6 +10,9 @@ requires-python = ">=3.10,<4.0"
 dependencies = [
     "click (>=8.0.1)"
 ]
+{% if cookiecutter.department_number is defined and cookiecutter.department_number %}
+maintainers = [{name = "__DEPARTMENT_NAME__"}]
+{% endif %}
 
 [project.urls]
 homepage = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}"

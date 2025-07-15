@@ -19,6 +19,10 @@
     "Development Status :: 7 - Inactive"
   ],
   "code_quality_level": ["Medium", "High", "Low"],
+  "department_number": "",
   "_copy_without_render": ["*.rst_t"],
-  "_jinja2_env_vars": { "lstrip_blocks": true, "trim_blocks": true }
+  "_jinja2_env_vars": { "lstrip_blocks": true, "trim_blocks": true },
+  "__prompts__": {
+    "department_number": "Maintainer: Statistics Norway department number (press enter if not in Statistics Norway)"
+  }
 }
