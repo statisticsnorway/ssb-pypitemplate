@@ -34,10 +34,9 @@ def set_department_name():
     """
     department_number = "{{ cookiecutter.department_number }}"
     if department_number and department_number.isdigit():
-        template_dir = r"{{ cookiecutter._template }}"  # path to the template root dir
-        department_file = (
-            Path(template_dir).resolve() / "hooks" / "statistics_norway_departments.csv"
-        )
+        # Use the directory containing this script as the template root
+        template_dir = Path(__file__).parent.parent
+        department_file = template_dir / "hooks" / "statistics_norway_departments.csv"
 
         department_lookup = {}
         if department_file.exists():
