@@ -33,7 +33,7 @@ def validate_department_number():
     # Use the directory containing this script as the template root
     template_dir = Path(__file__).parent.parent
 
-    # The departments file is stored in a temp directory. Need to search for it.
+    # The department file is stored in a temp directory. Need to search for it.
     department_file = next(template_dir.rglob("hooks/statistics_norway_departments.csv"), None)
 
     department_lookup = {}
@@ -45,7 +45,7 @@ def validate_department_number():
                 if row["level"] == "2":
                     department_lookup[row["code"]] = row["name"].rstrip()
     else:
-        print(f"vdm Error: Department file '{department_file}' not found.")
+        print(f"Error: Department file '{department_file}' not found.")
         sys.exit(1)
 
     # Validate that the department number exists in the lookup table and print the list

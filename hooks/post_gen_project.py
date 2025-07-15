@@ -36,10 +36,12 @@ def set_department_name():
     if department_number and department_number.isdigit():
         # Use the directory containing this script as the template root
         template_dir = Path(__file__).parent.parent
-        department_file = template_dir / "hooks" / "statistics_norway_departments.csv"
+
+        # The department file is stored in a temp directory. Need to search for it.
+        department_file = next(template_dir.rglob("hooks/statistics_norway_departments.csv"), None)
 
         department_lookup = {}
-        if department_file.exists():
+        if department_file and department_file.exists():
             with department_file.open(encoding="utf-8") as csvfile:
                 reader = csv.DictReader(csvfile, delimiter=";")
                 for row in reader:
