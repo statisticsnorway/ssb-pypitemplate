@@ -1,6 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
+*.py[codz]
 *$py.class
 
 # C extensions
@@ -20,7 +20,6 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -47,9 +46,10 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
-*.py,cover
+*.py.cover
 .hypothesis/
 .pytest_cache/
+cover/
 
 # Translations
 *.mo
@@ -72,6 +72,7 @@ instance/
 docs/_build/
 
 # PyBuilder
+.pybuilder/
 target/
 
 # Jupyter Notebook
@@ -103,6 +104,7 @@ celerybeat.pid
 
 # Environments
 .env
+.envrc
 .venv
 env/
 venv/
@@ -128,12 +130,20 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
 # PyCharm
 .idea/
 
-/.python-version
-/.pytype/
-/docs/_build/
+# Abstra
+# Abstra is an AI-powered process automation framework.
+# Ignore directories containing user credentials, local state, and settings.
+# Learn more at https://abstra.io/docs
+.abstra/
 
 # Visual Studio Code
 .vscode/*
@@ -146,3 +156,22 @@ dmypy.json
 .history/
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Ruff stuff:
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Other
+/docs/_build/
+*.rej
+*.orig
