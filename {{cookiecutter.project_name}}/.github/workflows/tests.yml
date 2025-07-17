@@ -41,16 +41,16 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
       - name: Set up Python ${{"{{"}} matrix.python {{"}}"}}
         uses: actions/setup-python@v5.6.0
         with:
           python-version: ${{"{{"}} matrix.python {{"}}"}}
-{% raw %}
+
       - name: Upgrade pip
         run: |
-          pip install -c ${{ github.workspace }}/.github/workflows/constraints.txt pip
+          pip install -c ${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt pip
           pip --version
-{% endraw %}
 
       - name: Upgrade pip in virtual environments
         shell: python
@@ -60,20 +60,33 @@ jobs:
 
           with open(os.environ["GITHUB_ENV"], mode="a") as io:
               print(f"VIRTUALENV_PIP={pip.__version__}", file=io)
-{% raw %}
+
       - name: Install Poetry
         run: |
-          pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" poetry
+          pipx install --pip-args "-c ${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" poetry
           pipx inject poetry poetry-plugin-export
           poetry --version
-{% endraw %}
-{% raw %}
+
       - name: Install Nox
         run: |
-          pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" nox
-          pipx inject --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" nox nox-poetry
+          pipx install --pip-args "-c ${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox
+          pipx inject --pip-args "-c ${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox nox-poetry
           nox --version
-{% endraw %}
+{% else %}
+      - name: Get uv version from constraints
+        id: uv-version
+        shell: pwsh
+        run: |
+          $UV_VERSION = (Get-Content .github/workflows/constraints.txt | Where-Object { $_ -match '^uv==' } | ForEach-Object { ($_ -split '==')[1] })
+          echo "version=$UV_VERSION" >> $env:GITHUB_OUTPUT
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          version: {{ "${{ steps.uv-version.outputs.version }}" }}
+          python-version: ${{"{{"}} matrix.python {{"}}"}}
+{% endif %}
 
       - name: Compute pre-commit cache key
         if: matrix.session == 'pre-commit'
@@ -102,7 +115,11 @@ jobs:
 
       - name: Run Nox
         run: |
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
           nox --python=${{"{{"}} matrix.python {{"}}"}}
+{% else %}
+          uvx --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --python=${{ "{{ matrix.python }}" }}
+{% endif %}
 
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
@@ -128,30 +145,43 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
       - name: Set up Python
         uses: actions/setup-python@v5.6.0
         with:
           python-version: "3.11"
-{% raw %}
+
       - name: Upgrade pip
         run: |
-          pip install -c ${{ github.workspace }}/.github/workflows/constraints.txt pip
+          pip install -c ${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt pip
           pip --version
-{% endraw %}
-{% raw %}
+
       - name: Install Poetry
         run: |
-          pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" poetry
+          pipx install --pip-args "-c ${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" poetry
           pipx inject poetry poetry-plugin-export
           poetry --version
-{% endraw %}
-{% raw %}
+
       - name: Install Nox
         run: |
-          pipx install --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" nox
-          pipx inject --pip-args "-c ${{ github.workspace }}/.github/workflows/constraints.txt" nox nox-poetry
+          pipx install --pip-args "-c ${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox
+          pipx inject --pip-args "-c ${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox nox-poetry
           nox --version
-{% endraw %}
+{% else %}
+      - name: Get uv version from constraints
+        id: uv-version
+        shell: pwsh
+        run: |
+          $UV_VERSION = (Get-Content .github/workflows/constraints.txt | Where-Object { $_ -match '^uv==' } | ForEach-Object { ($_ -split '==')[1] })
+          echo "version=$UV_VERSION" >> $env:GITHUB_OUTPUT
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          version: {{ "${{ steps.uv-version.outputs.version }}" }}
+          python-version: "3.11"
+{% endif %}
 
       - name: Download coverage data
         uses: actions/download-artifact@v4
@@ -161,11 +191,19 @@ jobs:
 
       - name: Combine coverage data and display human readable report
         run: |
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
           nox --session=coverage
+{% else %}
+          uvx --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --session=coverage
+{% endif %}
 
       - name: Create coverage report
         run: |
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
           nox --session=coverage -- xml
+{% else %}
+          uvx --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --session=coverage -- xml
+{% endif %}
 
       # Need to fix coverage source paths for SonarCloud scanning in GitHub actions.
       # Replace root path with /github/workspace (mounted in docker container).

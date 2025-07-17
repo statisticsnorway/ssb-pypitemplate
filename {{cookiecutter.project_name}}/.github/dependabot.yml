@@ -18,6 +18,7 @@ updates:
       workflows-dependencies:
         patterns:
           - "*"
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
@@ -30,3 +31,14 @@ updates:
       poetry-dependencies:
         patterns:
           - "*"
+{% else %}
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 99
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+{% endif %}

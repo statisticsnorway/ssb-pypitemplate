@@ -2,17 +2,30 @@
 name = "{{cookiecutter.project_name}}"
 version = "{{cookiecutter.version}}"
 description = "{{cookiecutter.friendly_name}}"
-authors = [{name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}"}]
+authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
+{% if cookiecutter.department_number is defined and cookiecutter.department_number %}
+maintainers = [{ name = "__DEPARTMENT_NAME__" }]
+{% endif %}
 license = "{{cookiecutter.license}}"
 readme = "README.md"
-dynamic = ["classifiers"]
 requires-python = ">=3.10,<4.0"
-dependencies = [
-    "click (>=8.0.1)"
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
+dynamic = ["classifiers"]
+{% else %}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "License :: OSI Approved :: MIT License",
+  "Development Status :: 4 - Beta",
+  "Typing :: Typed",
 ]
-{% if cookiecutter.department_number is defined and cookiecutter.department_number %}
-maintainers = [{name = "__DEPARTMENT_NAME__"}]
 {% endif %}
+dependencies = [
+    "click>=8.0.1",
+]
 
 [project.urls]
 homepage = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}"
@@ -23,6 +36,7 @@ Changelog = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecut
 [project.scripts]
 {{cookiecutter.project_name}} = "{{cookiecutter.package_name}}.__main__:main"
 
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
 [tool.poetry]
 classifiers = ["{{cookiecutter.development_status}}"]
 requires-poetry = ">=2.0"
@@ -52,6 +66,29 @@ deptry = ">=0.23.0"
 
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.9"
+{% else %}
+[dependency-groups]
+dev = [
+    "pygments>=2.10.0",
+    "black[jupyter]>=23.1.0",
+    "coverage[toml]>=6.2",
+    "darglint>=1.8.1",
+    "furo>=2021.11.12",
+    "mypy>=0.930",
+    "pre-commit>=2.16.0",
+    "pre-commit-hooks>=4.1.0",
+    "ruff>=0.0.284",
+    "pytest>=6.2.5",
+    "sphinx>=6.2.1",
+    "sphinx-autobuild>=2021.3.14",
+    "sphinx-autodoc-typehints>=1.24.0",
+    "sphinx-click>=3.0.2",
+    "typeguard>=2.13.3",
+    "xdoctest[colors]>=0.15.10",
+    "myst-parser>=0.16.1",
+    "deptry>=0.23.0",
+]
+{% endif %}
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
@@ -76,7 +113,11 @@ fail_under = 20
 {% endif %}
 
 [tool.deptry.per_rule_ignores]
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
 DEP001 = ["nox", "nox_poetry"]  # packages available by default
+{% else %}
+DEP001 = ["nox"]  # packages available by default
+{% endif %}
 
 [tool.mypy]
 strict = true
@@ -165,6 +206,16 @@ classmethod-decorators = ["classmethod", "validator", "root_validator", "pydanti
     "S101",    # asserts are encouraged in pytest
 ]
 
+{% if cookiecutter.dependency_manager_tool == "uv" and cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') %}
+[tool.uv.build-backend]
+module-name = "{{cookiecutter.package_name}}"
+
+{% endif %}
 [build-system]
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+{% else %}
+requires = ["uv_build>=0.8.0,<0.9"]
+build-backend = "uv_build"
+{% endif %}
