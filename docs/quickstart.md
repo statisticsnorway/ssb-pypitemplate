@@ -2,6 +2,9 @@
 
 ## Requirements
 
+When you create a project, you are asked if you want to use [poetry] or [uv] as a
+dependency manager tool. You only need to install one of them.
+
 Install [pipx]:
 
 ```console
@@ -15,18 +18,24 @@ Install [cruft]:
 pipx install cruft[pyproject]
 ```
 
-Install [Poetry]:
+Install [Nox]:
+
+```console
+pipx install nox
+```
+
+Install [Poetry] and [nox-poetry]:
 
 ```console
 pipx install poetry
 pipx inject poetry poetry-plugin-export
+pipx inject nox nox-poetry
 ```
 
-Install [Nox] and [nox-poetry]:
+Install [uv]:
 
 ```console
-pipx install nox
-pipx inject nox nox-poetry
+pipx install uv
 ```
 
 [pipx] is preferred, but you can also install with `pip install --user`.
@@ -53,12 +62,24 @@ git add .
 git commit
 ```
 
-## Installing the environment
+### Install the environment and create a lock-file
 
 Install the virtual environment using the command:
 
+If using [poetry]:
+
 ```console
 poetry update
+git add poetry.lock
+git commit
+```
+
+If using [uv]:
+
+```console
+uv sync
+git add uv.lock
+git commit
 ```
 
 ## Testing
@@ -198,3 +219,4 @@ by applying labels to them, like this:
 [sonarcloud]: https://www.sonarsource.com/products/sonarcloud/
 [testpypi]: https://test.pypi.org/
 [trusted publisher]: https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
+[uv]: https://docs.astral.sh/uv/

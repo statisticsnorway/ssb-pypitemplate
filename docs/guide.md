@@ -174,9 +174,14 @@ use [pip install] with the `--user` option instead.
 You need four tools to use this template:
 
 - [Cruft] to create projects from the template,
-- [Poetry] to manage packaging and dependencies
+- [Poetry] or [uv] to manage packaging and dependencies
 - [Nox] to automate checks and other tasks
 - [nox-poetry] for using Poetry in Nox sessions
+
+When you create a project you are asked if you want to use `poetry` or `uv` as
+a dependency manager tool. You only need one of these. There is no need to install
+`uv` if you only use `poetry`, and no need to install `poetry` and `nox-poetry`
+if you only use `uv`.
 
 Install [Cruft] using pipx:
 
@@ -184,17 +189,18 @@ Install [Cruft] using pipx:
 pipx install cruft[pyproject]
 ```
 
-Install [Poetry] using pipx:
+Install [Poetry] or [uv] using pipx:
 
 ```console
-pipx install poetry
+pipx install poetry  # If selecting poetry as a dependency manager
+pipx install uv      # If selecting uv as a dependency manager
 ```
 
 Install [Nox] and [nox-poetry] using pipx:
 
 ```console
 pipx install nox
-pipx inject nox nox-poetry
+pipx inject nox nox-poetry  # Only if you use poetry as a dependency manager tool
 ```
 
 Remember to upgrade these tools regularly:
@@ -203,6 +209,7 @@ Remember to upgrade these tools regularly:
 pipx upgrade cruft
 pipx upgrade --include-injected nox
 pipx upgrade poetry
+pipx upgrade uv
 ```
 
 ## Project creation
@@ -271,6 +278,12 @@ Here is a complete list of the project variables defined by this template:
 - - `code_quality_level`
   - Requirements for code quality level
   - `Medium`
+- - `dependency_manager_tool`
+  - Select between `poetry` and `uv`
+  - `poetry`
+- - `department_number`
+  - Statistics Norway only: Department/"seksjon" number responsible for maintaining the library
+  - `703`
 
 :::
 
@@ -2747,6 +2760,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [type annotations]: https://docs.python.org/3/library/typing.html
 [typeguard]: https://github.com/agronholm/typeguard
 [unix-style line endings]: https://en.wikipedia.org/wiki/Newline
+[uv]: https://docs.astral.sh/uv/
 [versions and constraints]: https://python-poetry.org/docs/dependency-specification/
 [virtual environment]: https://docs.python.org/3/tutorial/venv.html
 [virtualenv]: https://virtualenv.pypa.io/
