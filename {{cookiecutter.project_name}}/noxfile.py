@@ -6,6 +6,7 @@ import shutil
 import sys
 from pathlib import Path
 from textwrap import dedent
+from typing import Iterable
 
 import nox
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
@@ -39,7 +40,26 @@ nox.options.sessions = (
     "xdoctest",
     "docs-build",
 )
-{% if cookiecutter.dependency_manager_tool == "uv" %}
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
+
+
+def install_poetry_groups(session: Session, groups: Iterable[str]) -> None:
+    """Manually parse the pyproject file to find group(s) of dependencies, then install."""
+    pyproject_path = Path("pyproject.toml")
+    data = nox.project.load_toml(pyproject_path)
+    group_data = data["tool"]["poetry"]["group"]
+    all_dependencies = []
+    for group in groups:
+        dependencies = group_data[group]["dependencies"]
+        for dependency, spec in dependencies.items():
+            if isinstance(spec, dict) and "extras" in spec:
+                dependency += "[{}]".format(",".join(spec["extras"]))
+            all_dependencies.append(dependency)
+    all_dependencies = list(set(all_dependencies))
+    session.install(*all_dependencies)
+
+
+{% else %}
 nox.options.default_venv_backend = "uv"
 session = nox.session
 
@@ -50,6 +70,7 @@ def install_with_uv(
     only_dev: bool = False,
     all_extras: bool = False,
     locked: bool = True,
+    only_groups: None | Iterable[str] = None,
 ) -> None:
     """Install packages using uv, pinned to uv.lock."""
     cmd = ["uv", "sync"]
@@ -59,6 +80,10 @@ def install_with_uv(
         cmd.append("--only-dev")
     if all_extras:
         cmd.append("--all-extras")
+    if only_groups:
+        for group in only_groups:
+            cmd.extend(["--only-group", group])
+
     cmd.append(
         f"--python={session.virtualenv.location}"
     )  # Target the nox venv's Python interpreter
@@ -161,13 +186,8 @@ def precommit(session: Session) -> None:
         "--show-diff-on-failure",
     ]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.install(
-        "pre-commit",
-        "pre-commit-hooks",
-        "darglint",
-        "ruff",
-        "black",
-    )
+    session.poetry.installroot()
+    install_poetry_groups(session, ("dev",))
 {% else %}
     install_with_uv(session, only_dev=True)
 {% endif %}
@@ -181,8 +201,8 @@ def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or ["src", "tests"]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.install(".")
-    session.install("mypy", "pytest")
+    session.poetry.installroot()
+    install_poetry_groups(session, ("dev",))
 {% else %}
     install_with_uv(session)
 {% endif %}
@@ -195,8 +215,8 @@ def mypy(session: Session) -> None:
 def tests(session: Session) -> None:
     """Run the test suite."""
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.install(".")
-    session.install("coverage[toml]", "pytest", "pygments")
+    session.poetry.installroot()
+    install_poetry_groups(session, ("dev",))
 {% else %}
     install_with_uv(session)
 {% endif %}
@@ -222,7 +242,7 @@ def coverage(session: Session) -> None:
     args = session.posargs or ["report", "--skip-empty"]
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.install("coverage[toml]")
+    install_poetry_groups(session, ("dev",))
 {% else %}
     install_with_uv(session)
 {% endif %}
@@ -237,8 +257,8 @@ def coverage(session: Session) -> None:
 def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.install(".")
-    session.install("pytest", "typeguard", "pygments")
+    session.poetry.installroot()
+    install_poetry_groups(session, ("dev",))
 {% else %}
     install_with_uv(session)
 {% endif %}
@@ -256,8 +276,8 @@ def xdoctest(session: Session) -> None:
             args.append("--colored=1")
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.install(".")
-    session.install("xdoctest[colors]")
+    session.poetry.installroot()
+    install_poetry_groups(session, ("dev",))
 {% else %}
     install_with_uv(session)
 {% endif %}
@@ -272,12 +292,9 @@ def docs_build(session: Session) -> None:
         args.insert(0, "--color")
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.install(".")
-    session.install(
-        "sphinx", "sphinx-autodoc-typehints", "sphinx-click", "furo", "myst-parser"
-    )
+    install_poetry_groups(session, ("dev", "docs"))
 {% else %}
-    install_with_uv(session, only_dev=True)
+    install_with_uv(session, only_groups=("dev", "docs"))
 {% endif %}
 
     build_dir = Path("docs", "_build")
@@ -292,17 +309,9 @@ def docs(session: Session) -> None:
     """Build and serve the documentation with live reloading on file changes."""
     args = session.posargs or ["--open-browser", "docs", "docs/_build"]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.install(".")
-    session.install(
-        "sphinx",
-        "sphinx-autobuild",
-        "sphinx-autodoc-typehints",
-        "sphinx-click",
-        "furo",
-        "myst-parser",
-    )
+    install_poetry_groups(session, ("dev", "docs"))
 {% else %}
-    install_with_uv(session, only_dev=True)
+    install_with_uv(session, only_groups=("dev", "docs"))
 {% endif %}
 
     build_dir = Path("docs", "_build")

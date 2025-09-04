@@ -49,20 +49,22 @@ pygments = ">=2.10.0"
 black = { extras = ["jupyter"], version = ">=23.1.0" }
 coverage = { extras = ["toml"], version = ">=6.2" }
 darglint = ">=1.8.1"
-furo = ">=2021.11.12"
 mypy = ">=0.930"
 pre-commit = ">=2.16.0"
 pre-commit-hooks = ">=4.1.0"
 ruff = ">=0.0.284"
 pytest = ">=6.2.5"
+typeguard = ">=2.13.3"
+deptry = ">=0.23.0"
+xdoctest = { extras = ["colors"], version = ">=0.15.10" }
+
+[tool.poetry.group.docs.dependencies]
 sphinx = ">=6.2.1"
 sphinx-autobuild = ">=2021.3.14"
 sphinx-autodoc-typehints = ">=1.24.0"
 sphinx-click = ">=3.0.2"
-typeguard = ">=2.13.3"
-xdoctest = { extras = ["colors"], version = ">=0.15.10" }
+furo = ">=2021.11.12"
 myst-parser = { version = ">=0.16.1" }
-deptry = ">=0.23.0"
 
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.9"
@@ -73,20 +75,22 @@ dev = [
     "black[jupyter]>=23.1.0",
     "coverage[toml]>=6.2",
     "darglint>=1.8.1",
-    "furo>=2021.11.12",
     "mypy>=0.930",
     "pre-commit>=2.16.0",
     "pre-commit-hooks>=4.1.0",
     "ruff>=0.0.284",
     "pytest>=6.2.5",
+    "typeguard>=2.13.3",
+    "xdoctest[colors]>=0.15.10",
+    "deptry>=0.23.0",
+]
+docs = [
     "sphinx>=6.2.1",
     "sphinx-autobuild>=2021.3.14",
     "sphinx-autodoc-typehints>=1.24.0",
     "sphinx-click>=3.0.2",
-    "typeguard>=2.13.3",
-    "xdoctest[colors]>=0.15.10",
+    "furo>=2021.11.12",
     "myst-parser>=0.16.1",
-    "deptry>=0.23.0",
 ]
 {% endif %}
 
