@@ -44,7 +44,7 @@ nox.options.sessions = (
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 
 
-def install_poetry_groups(session, groups: Iterable[str]) -> None:
+def install_poetry_groups(session: Session, groups: Iterable[str]) -> None:
     """Install dependencies from poetry groups.
 
     This is as workaround until this PR is merged in:
