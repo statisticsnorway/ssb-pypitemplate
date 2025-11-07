@@ -44,7 +44,12 @@ nox.options.sessions = (
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 
 
-def install_poetry_groups(session: Session, groups: Iterable[str]) -> None:
+def install_poetry_groups(
+    session: Session,
+    *,
+    groups: Iterable[str] | None = None,
+    only_groups: Iterable[str] | None = None,
+) -> None:
     """Install dependencies from poetry groups.
 
     This is as workaround until this PR is merged in:
@@ -54,7 +59,12 @@ def install_poetry_groups(session: Session, groups: Iterable[str]) -> None:
         session.run(
             "poetry",
             "export",
-            *[f"--only={group}" for group in groups],
+            *([f"--with={group}" for group in groups] if groups is not None else []),
+            *(
+                [f"--only={group}" for group in only_groups]
+                if only_groups is not None
+                else []
+            ),
             "--format=requirements.txt",
             "--without-hashes",
             f"--output={requirements.name}",
@@ -72,6 +82,7 @@ def install_with_uv(
     *,
     all_extras: bool = False,
     locked: bool = True,
+    groups: None | Iterable[str] = None,
     only_groups: None | Iterable[str] = None,
 ) -> None:
     """Install packages using uv, pinned to uv.lock."""
@@ -80,6 +91,9 @@ def install_with_uv(
         cmd.append("--locked")
     if all_extras:
         cmd.append("--all-extras")
+    if groups:
+        for group in groups:
+            cmd.extend(["--group", group])
     if only_groups:
         for group in only_groups:
             cmd.extend(["--only-group", group])
@@ -186,8 +200,7 @@ def precommit(session: Session) -> None:
         "--show-diff-on-failure",
     ]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    session.poetry.installroot()
-    install_poetry_groups(session, ("dev", "pre-commit"))
+    install_poetry_groups(session, only_groups=("dev", "pre-commit"))
 {% else %}
     install_with_uv(session, only_groups=("dev", "pre-commit"))
 {% endif %}
@@ -202,9 +215,9 @@ def mypy(session: Session) -> None:
     args = session.posargs or ["src", "tests"]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
     session.poetry.installroot()
-    install_poetry_groups(session, ("dev", "type-stubs"))
+    install_poetry_groups(session, groups=("dev", "type-stubs"))
 {% else %}
-    install_with_uv(session, only_groups=("dev", "type-stubs"))
+    install_with_uv(session, groups=("dev", "type-stubs"))
 {% endif %}
     session.run("mypy", *args)
     if not session.posargs:
@@ -216,9 +229,9 @@ def tests(session: Session) -> None:
     """Run the test suite."""
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
     session.poetry.installroot()
-    install_poetry_groups(session, ("dev",))
+    install_poetry_groups(session, groups=("dev",))
 {% else %}
-    install_with_uv(session)
+    install_with_uv(session, groups=("dev",))
 {% endif %}
     try:
         session.run(
@@ -242,9 +255,10 @@ def coverage(session: Session) -> None:
     args = session.posargs or ["report", "--skip-empty"]
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    install_poetry_groups(session, ("dev",))
+    session.poetry.installroot()
+    install_poetry_groups(session, groups=("dev",))
 {% else %}
-    install_with_uv(session, only_groups=("dev",))
+    install_with_uv(session, groups=("dev",))
 {% endif %}
 
     if not session.posargs and any(Path().glob(".coverage.*")):
@@ -258,9 +272,9 @@ def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
     session.poetry.installroot()
-    install_poetry_groups(session, ("dev", "type-stubs"))
+    install_poetry_groups(session, groups=("dev", "type-stubs"))
 {% else %}
-    install_with_uv(session, only_groups=("dev", "type-stubs"))
+    install_with_uv(session, groups=("dev", "type-stubs"))
 {% endif %}
     session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
 
@@ -277,9 +291,9 @@ def xdoctest(session: Session) -> None:
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
     session.poetry.installroot()
-    install_poetry_groups(session, ("dev",))
+    install_poetry_groups(session, groups=("dev",))
 {% else %}
-    install_with_uv(session, only_groups=("dev",))
+    install_with_uv(session, groups=("dev",))
 {% endif %}
     session.run("python", "-m", "xdoctest", *args)
 
@@ -292,7 +306,7 @@ def docs_build(session: Session) -> None:
         args.insert(0, "--color")
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    install_poetry_groups(session, ("dev", "docs"))
+    install_poetry_groups(session, only_groups=("dev", "docs"))
 {% else %}
     install_with_uv(session, only_groups=("dev", "docs"))
 {% endif %}
@@ -309,7 +323,7 @@ def docs(session: Session) -> None:
     """Build and serve the documentation with live reloading on file changes."""
     args = session.posargs or ["--open-browser", "docs", "docs/_build"]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-    install_poetry_groups(session, ("dev", "docs"))
+    install_poetry_groups(session, only_groups=("dev", "docs"))
 {% else %}
     install_with_uv(session, only_groups=("dev", "docs"))
 {% endif %}
