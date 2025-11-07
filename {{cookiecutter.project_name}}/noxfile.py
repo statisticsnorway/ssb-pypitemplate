@@ -189,7 +189,7 @@ def precommit(session: Session) -> None:
     session.poetry.installroot()
     install_poetry_groups(session, ("dev", "pre-commit"))
 {% else %}
-    install_with_uv(session, ("dev", "pre-commit"))
+    install_with_uv(session, only_groups=("dev", "pre-commit"))
 {% endif %}
     session.run("pre-commit", *args)
     if args and args[0] == "install":
@@ -204,7 +204,7 @@ def mypy(session: Session) -> None:
     session.poetry.installroot()
     install_poetry_groups(session, ("dev", "type-stubs"))
 {% else %}
-    install_with_uv(session, ("dev", "type-stubs"))
+    install_with_uv(session, only_groups=("dev", "type-stubs"))
 {% endif %}
     session.run("mypy", *args)
     if not session.posargs:
