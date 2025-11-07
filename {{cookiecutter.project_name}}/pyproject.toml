@@ -15,7 +15,9 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  {% if cookiecutter.license == "MIT" %}
   "License :: OSI Approved :: MIT License",
+  {% endif %}
   "{{cookiecutter.development_status}}",
   "Typing :: Typed",
 ]
@@ -54,7 +56,6 @@ docs = [
     "myst-parser>=0.16.1",
 ]
 type-stubs = [
-    
 ]
 pre-commit = [
     "pre-commit>=2.16.0",
