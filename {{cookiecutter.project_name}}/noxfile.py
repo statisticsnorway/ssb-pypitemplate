@@ -5,6 +5,7 @@ import shlex
 import shutil
 import sys
 from pathlib import Path
+import tempfile
 from textwrap import dedent
 from typing import Iterable
 
@@ -43,22 +44,24 @@ nox.options.sessions = (
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 
 
-def install_poetry_groups(session: Session, groups: Iterable[str]) -> None:
-    """Manually parse the pyproject file to find group(s) of dependencies, then install."""
-    pyproject_path = Path("pyproject.toml")
-    data = nox.project.load_toml(pyproject_path)
-    group_data = data["tool"]["poetry"]["group"]
-    all_dependencies = []
-    for group in groups:
-        dependencies = group_data[group]["dependencies"]
-        for dependency, spec in dependencies.items():
-            if isinstance(spec, dict) and "extras" in spec:
-                dependency += "[{}]".format(",".join(spec["extras"]))
-            all_dependencies.append(dependency)
-    all_dependencies = list(set(all_dependencies))
-    session.install(*all_dependencies)
+def install_poetry_groups(session, groups: Iterable[str]) -> None:
+    """Install dependencies from poetry groups.
 
+    This is as workaround until this PR is merged in:
+    https://github.com/cjolowicz/nox-poetry/pull/1080
+    """
+    with tempfile.NamedTemporaryFile() as requirements:
+        session.run(
+            "poetry",
+            "export",
+            *[f"--only={group}" for group in groups],
+            "--format=requirements.txt",
+            "--without-hashes",
+            f"--output={requirements.name}",
+            external=True,
+        )
 
+        session.install("-r", requirements.name)
 {% else %}
 nox.options.default_venv_backend = "uv"
 session = nox.session
@@ -67,7 +70,6 @@ session = nox.session
 def install_with_uv(
     session: Session,
     *,
-    only_dev: bool = False,
     all_extras: bool = False,
     locked: bool = True,
     only_groups: None | Iterable[str] = None,
@@ -76,8 +78,6 @@ def install_with_uv(
     cmd = ["uv", "sync"]
     if locked:
         cmd.append("--locked")
-    if only_dev:
-        cmd.append("--only-dev")
     if all_extras:
         cmd.append("--all-extras")
     if only_groups:
@@ -187,9 +187,9 @@ def precommit(session: Session) -> None:
     ]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
     session.poetry.installroot()
-    install_poetry_groups(session, ("dev",))
+    install_poetry_groups(session, ("dev", "pre-commit"))
 {% else %}
-    install_with_uv(session, only_dev=True)
+    install_with_uv(session, ("dev", "pre-commit"))
 {% endif %}
     session.run("pre-commit", *args)
     if args and args[0] == "install":
@@ -202,9 +202,9 @@ def mypy(session: Session) -> None:
     args = session.posargs or ["src", "tests"]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
     session.poetry.installroot()
-    install_poetry_groups(session, ("dev",))
+    install_poetry_groups(session, ("dev", "type-stubs"))
 {% else %}
-    install_with_uv(session)
+    install_with_uv(session, ("dev", "type-stubs"))
 {% endif %}
     session.run("mypy", *args)
     if not session.posargs:
@@ -244,7 +244,7 @@ def coverage(session: Session) -> None:
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
     install_poetry_groups(session, ("dev",))
 {% else %}
-    install_with_uv(session)
+    install_with_uv(session, only_groups=("dev",))
 {% endif %}
 
     if not session.posargs and any(Path().glob(".coverage.*")):
@@ -258,9 +258,9 @@ def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
     session.poetry.installroot()
-    install_poetry_groups(session, ("dev",))
+    install_poetry_groups(session, ("dev", "type-stubs"))
 {% else %}
-    install_with_uv(session)
+    install_with_uv(session, only_groups=("dev", "type-stubs"))
 {% endif %}
     session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
 
@@ -279,7 +279,7 @@ def xdoctest(session: Session) -> None:
     session.poetry.installroot()
     install_poetry_groups(session, ("dev",))
 {% else %}
-    install_with_uv(session)
+    install_with_uv(session, only_groups=("dev",))
 {% endif %}
     session.run("python", "-m", "xdoctest", *args)
 
