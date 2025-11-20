@@ -205,6 +205,6 @@ module-name = "{{cookiecutter.package_name}}"
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 {% else %}
-requires = ["uv_build>=0.8.0,<0.9"]
+requires = ["uv_build>=0.9.5,<0.10.0"]
 build-backend = "uv_build"
 {% endif %}
