@@ -70,7 +70,7 @@ dev = [
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 [tool.poetry]
 classifiers = ["{{cookiecutter.development_status}}"]
-requires-poetry = ">=2.0"
+requires-poetry = ">=2.2"
 {% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') %}
 packages = [{ include = "{{cookiecutter.package_name}}", from = "src" }]
 {% endif %}
