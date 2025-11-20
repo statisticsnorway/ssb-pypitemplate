@@ -2590,7 +2590,7 @@ The project setup is described in detail in the [Hypermodern Python] article ser
 
 You can also read the articles on [this blog][hypermodern python blog].
 
-[--reuse-existing-virtualenvs]: https://nox.thea.codes/en/stable/usage.html#re-using-virtualenvs
+[--reuse-existing-virtualenvs]: https://nox.thea.codes/en/stable/usage.html#reusing-virtualenvs
 [.gitattributes]: https://git-scm.com/book/en/Customizing-Git-Git-Attributes
 [.github/dependabot.yml]: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 [.gitignore]: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_ignoring
@@ -2654,15 +2654,15 @@ You can also read the articles on [this blog][hypermodern python blog].
 [github renaming]: https://github.com/github/renaming
 [github]: https://github.com/
 [google docstring style]: https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings
-[hypermodern python blog]: https://cjolowicz.github.io/posts/hypermodern-python-01-setup/
-[hypermodern python chapter 1]: https://medium.com/@cjolowicz/hypermodern-python-d44485d9d769
-[hypermodern python chapter 2]: https://medium.com/@cjolowicz/hypermodern-python-2-testing-ae907a920260
-[hypermodern python chapter 3]: https://medium.com/@cjolowicz/hypermodern-python-3-linting-e2f15708da80
-[hypermodern python chapter 4]: https://medium.com/@cjolowicz/hypermodern-python-4-typing-31bcf12314ff
-[hypermodern python chapter 5]: https://medium.com/@cjolowicz/hypermodern-python-5-documentation-13219991028c
-[hypermodern python chapter 6]: https://medium.com/@cjolowicz/hypermodern-python-6-ci-cd-b233accfa2f6
+[hypermodern python blog]: https://blog.claudiojolowicz.com/posts/hypermodern-python-01-setup/
+[hypermodern python chapter 1]: https://blog.claudiojolowicz.com/posts/hypermodern-python-01-setup/
+[hypermodern python chapter 2]: https://blog.claudiojolowicz.com/posts/hypermodern-python-02-testing/
+[hypermodern python chapter 3]: https://blog.claudiojolowicz.com/posts/hypermodern-python-03-linting/
+[hypermodern python chapter 4]: https://blog.claudiojolowicz.com/posts/hypermodern-python-04-typing/
+[hypermodern python chapter 5]: https://blog.claudiojolowicz.com/posts/hypermodern-python-05-documentation/
+[hypermodern python chapter 6]: https://blog.claudiojolowicz.com/posts/hypermodern-python-06-ci-cd/
 [hypermodern python cookiecutter]: https://github.com/cjolowicz/cookiecutter-hypermodern-python
-[hypermodern python]: https://medium.com/@cjolowicz/hypermodern-python-d44485d9d769
+[hypermodern python]: https://blog.claudiojolowicz.com/posts/hypermodern-python-01-setup/
 [import hook]: https://docs.python.org/3/reference/import.html#import-hooks
 [isort black profile]: https://pycqa.github.io/isort/docs/configuration/black_compatibility.html
 [isort force_single_line]: https://pycqa.github.io/isort/docs/configuration/options.html#force-single-line
