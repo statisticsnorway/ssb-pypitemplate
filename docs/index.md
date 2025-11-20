@@ -79,7 +79,7 @@ The project template is centered around the following tools:
 [2]: https://nox.thea.codes/
 [3]: https://github.com/features/actions
 [cookiecutter]: https://github.com/cookiecutter/cookiecutter
-[hypermodern python]: https://medium.com/@cjolowicz/hypermodern-python-d44485d9d769
+[hypermodern python]: https://blog.claudiojolowicz.com/posts/hypermodern-python-01-setup/
 [hypermodernism]: https://en.wikipedia.org/wiki/Hypermodernism_(chess)
 [retrofuturism]: https://en.wikipedia.org/wiki/Retrofuturism
 [statistics norway]: https://www.ssb.no/
