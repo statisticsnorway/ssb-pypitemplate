@@ -23,7 +23,7 @@ jobs:
     name: Python ${{ matrix.python-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           path: ssb-pypitemplate
       - uses: actions/setup-python@v6
@@ -81,7 +81,7 @@ jobs:
           result = "${{ runner.os }}-{}-{}-pre-commit".format(python, digest[:8])
           cmd = f'echo "result={result}" >> $GITHUB_OUTPUT'
           subprocess.run(cmd, shell=True)
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         if: matrix.os != 'windows-latest'
         with:
           path: ~/.cache/pre-commit
@@ -98,7 +98,7 @@ jobs:
     name: Build documentation & check links
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
