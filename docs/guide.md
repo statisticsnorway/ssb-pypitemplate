@@ -473,8 +473,6 @@ and links each file to a section with more details.
 
 - - `.cookiecutter.json`
   - [Project variables](creating-a-project)
-- - `.darglint`
-  - Configuration for [darglint](darglint-integration)
 - - `.github/dependabot.yml`
   - Configuration for [Dependabot](dependabot-integration)
 - - `.gitattributes`
@@ -864,8 +862,6 @@ See the table below for an overview of the dependencies of generated projects:
   - Composable command line interface toolkit
 - - [coverage][coverage.py]
   - Code coverage measurement for Python
-- - [darglint]
-  - A utility for ensuring Google-style docstrings stay up to date with the source code.
 - - [furo]
   - A clean customisable Sphinx documentation theme.
 - - [isort]
@@ -876,6 +872,8 @@ See the table below for an overview of the dependencies of generated projects:
   - A framework for managing and maintaining multi-language pre-commit hooks.
 - - [pre-commit-hooks]
   - Some out-of-the-box hooks for pre-commit.
+- - [pydoclint]
+  - A utility for ensuring Google-style docstrings stay up to date with the source code.
 - - [pygments]
   - Pygments is a syntax highlighting package written in Python.
 - - [pytest]
@@ -1643,20 +1641,6 @@ First, use Poetry to add the linter to your development dependencies:
 poetry add -G dev awesome-linter
 ```
 
-Next, update `noxfile.py` to add the linter to the pre-commit session:
-
-```python
-@nox.session(name="pre-commit", ...)
-def precommit(session: Session) -> None:
-    ...
-    session.install(
-        "awesome-linter",  # Install awesome-linter
-        "black",
-        "darglint",
-        ...
-    )
-```
-
 Finally, add the hook to `pre-commit-config.yaml` as follows:
 
 - Locate the `pre-commit-hooks.yaml` file in the `awesome-linter` repository.
@@ -1724,6 +1708,8 @@ The {{ SPT }} comes with a pre-commit configuration consisting of the following 
   - Ensure files are terminated by a single newline
 - - [trailing-whitespace]
   - Ensure lines do not contain trailing whitespace
+- - [pydoclint]
+  - Ensure Google-style docstrings are up to date with the source code
 
 :::
 
@@ -1745,7 +1731,6 @@ and the {{ SPT }} uses none of them.
 ### The Ruff hook
 
 [Ruff] is a fast linter framework for Python.
-For more details, see the section [Linting with Flake8](linting-with-flake8).
 
 (the-isort-hook)=
 
@@ -1780,187 +1765,6 @@ You should change this setting whenever you drop support for an old version of P
 
 The pre-commit configuration also includes several smaller hooks
 from the [pre-commit-hooks] repository.
-
-(linting-with-flake8)=
-
-## Linting with Flake8
-
-[Flake8] is an extensible linter framework for Python,
-and a command-line utility to run the linters on your source code.
-The {{ SPT }} integrates Flake8 via a [pre-commit] hook,
-see the section [The Flake8 hook](the-flake8-hook).
-
-The configuration file for Flake8 and its extensions
-is named `.flake8` and located in the project directory.
-For details about the configuration file, see the [official reference][flake8 configuration].
-
-The sections below describe the linters in more detail.
-Each section also notes any configuration settings applied by the {{ SPT }}.
-
-### Overview of available plugins
-
-Flake8 comes with a rich ecosystem of plugins.
-The following table lists the Flake8 plugins used by the {{ SPT }},
-and links to their lists of error codes.
-
-:::{list-table} Flake8 plugins
-:widths: auto
-
-- - [pyflakes]
-  - Find invalid Python code
-  - [F][pyflakes codes]
-- - [pycodestyle]
-  - Enforce style conventions from [PEP 8]
-  - [E,W][pycodestyle codes]
-- - [pep8-naming]
-  - Enforce naming conventions from [PEP 8]
-  - [N][pep8-naming codes]
-- - [pydocstyle] / [flake8-docstrings]
-  - Enforce docstring conventions from [PEP 257]
-  - [D][pydocstyle codes]
-- - [mccabe]
-  - Limit the code complexity
-  - [C][mccabe codes]
-- - [darglint]
-  - Detect inaccurate docstrings
-  - [DAR][darglint codes]
-- - [Bandit] / [flake8-bandit]
-  - Detect common security issues
-  - [S][bandit codes]
-
-:::
-
-### pyflakes
-
-[pyflakes] parses Python source files and finds invalid code.
-Warnings reported by this tool include
-syntax errors,
-undefined names,
-unused imports or variables,
-and more.
-It is included with [Flake8] by default.
-
-[Error codes][pyflakes codes] are prefixed by `F` for "flake".
-
-### pycodestyle
-
-[pycodestyle] checks your code against the style recommendations of [PEP 8][pep 8],
-the official Python style guide.
-The tool detects
-whitespace and indentation issues,
-deprecated features,
-bare excepts,
-and much more.
-It is included with [Flake8] by default.
-
-[Error codes][pycodestyle codes] are prefixed by `W` for warnings and `E` for errors.
-
-The {{ SPT }} disables the following errors and warnings
-for compatibility with [Black] and [flake8-bugbear]:
-
-- `E203` (whitespace before `:`)
-- `E501` (line too long)
-- `W503` (line break before binary operator)
-
-### pep8-naming
-
-[pep8-naming] enforces the naming conventions from [PEP 8][pep 8].
-Examples are the use of camel case for the names of classes,
-the use of lowercase for the names of functions, arguments and variables,
-or the convention to name the first argument of methods `self`.
-
-[Error codes][pep8-naming codes] are prefixed by `N` for "naming".
-
-### pydocstyle and flake8-docstrings
-
-[pydocstyle] checks that docstrings comply with the recommendations of [PEP 257][pep 257]
-and a configurable style convention.
-It is integrated with Flake8 via the [flake8-docstrings] extension.
-Warnings range from missing docstrings to
-issues with whitespace, quoting, and docstring content.
-
-[Error codes][pydocstyle codes] are prefixed by `D` for "docstring".
-
-The {{ SPT }} selects the recommendations of the
-[Google styleguide][google docstring style].
-Here is an example of a function documented in Google style:
-
-```python
-def add(first: int, second: int) -> int:
-    """Add two integers.
-
-    Args:
-        first: The first argument.
-        second: The second argument.
-
-    Returns:
-        The sum of the arguments.
-    """
-```
-
-### flake8-rst-docstrings
-
-flake8-rst-docstrings validates docstring markup as [reStructuredText].
-Docstrings must be valid reStructuredText
-because they are used by Sphinx to generate the API reference.
-
-[Error codes][flake8-rst-docstrings codes] are prefixed by `RST` for "reStructuredText",
-and group issues into numerical blocks, by their severity and origin.
-
-### flake8-bugbear
-
-flake8-bugbear detects bugs and design problems.
-The warnings are more opinionated than those of pyflakes or pycodestyle.
-For example,
-the plugin detects Python 2 constructs which have been removed in Python 3,
-and likely bugs such as function arguments defaulting to empty lists or dictionaries.
-
-[Error codes] are prefixed by `B` for "bugbear".
-
-The {{ SPT }} also enables Bugbear's `B9` warnings,
-which are disabled by default.
-In particular, `B950` checks the maximum line length
-like [pycodestyle]'s `E501`,
-but with a tolerance margin of 10%.
-This soft limit is set to 80 characters,
-which is the value used by the Black code formatter.
-
-### mccabe
-
-[mccabe] checks the [code complexity][cyclomatic complexity]
-of your Python package against a configured limit.
-The tool is included with [Flake8].
-
-[Error codes][mccabe codes] are prefixed by `C` for "complexity".
-
-The {{ SPT }} limits code complexity to a value of 10.
-
-(darglint-integration)=
-
-### darglint
-
-[darglint] checks that docstring descriptions match function definitions.
-The tool has its own configuration file, named `.darglint`.
-
-[Error codes][darglint codes] are prefixed by `DAR` for "darglint".
-
-The {{ SPT }} allows one-line docstrings without function signatures.
-Multi-line docstrings must
-specify the function signatures completely and correctly,
-using [Google docstring style].
-
-### Bandit
-
-[Bandit] is a tool designed to
-find common security issues in Python code,
-and integrated via the [flake8-bandit] extension.
-
-[Error codes][bandit codes] are prefixed by `S` for "security".
-(The prefix `B` for "bandit" is used
-when Bandit is run as a stand-alone tool.)
-
-The {{ SPT }} disables `S101` (use of assert) for the test suite,
-as [pytest] uses assertions to verify expectations in tests.
 
 (type-checking-with-mypy)=
 
@@ -2624,8 +2428,6 @@ You can also read the articles on [this blog][hypermodern python blog].
 [cruft]: https://cruft.github.io/cruft/
 [curl]: https://curl.se
 [cyclomatic complexity]: https://en.wikipedia.org/wiki/Cyclomatic_complexity
-[darglint codes]: https://github.com/terrencepreilly/darglint#error-codes
-[darglint]: https://github.com/terrencepreilly/darglint
 [dependabot docs]: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
 [dependabot issue 4435]: https://github.com/dependabot/dependabot-core/issues/4435
 [dependabot]: https://github.com/features/security/
@@ -2709,6 +2511,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [pre-commit-hooks]: https://github.com/pre-commit/pre-commit-hooks
 [pre-commit]: https://pre-commit.com/
 [prettier]: https://prettier.io/
+[pydoclint]: https://github.com/jsh9/pydoclint
 [pycodestyle codes]: https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
 [pycodestyle]: https://pycodestyle.pycqa.org/en/latest/
 [pydocstyle codes]: http://www.pydocstyle.org/en/stable/error_codes.html
