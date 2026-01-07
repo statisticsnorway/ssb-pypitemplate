@@ -57,9 +57,9 @@ repos:
         entry: check-ast
         language: system
         types: [python]
-      - id: darglint
-        name: darglint
-        entry: darglint
+      - id: pydoclint
+        name: pydoclint
+        entry: pydoclint
         language: system
         types: [python]
       - id: ruff
