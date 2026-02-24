@@ -8,7 +8,7 @@ maintainers = [{ name = "__DEPARTMENT_NAME__" }]
 {% endif %}
 license = "{{cookiecutter.license}}"
 readme = "README.md"
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.12"
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 dynamic = ["classifiers"]
 {% else %}
@@ -47,12 +47,12 @@ lint = [
     "ruff>=0.14.5",
 ]
 doc = [
-    "furo>=2025.9.25; python_version >= '3.11'",
-    "myst-parser>=4.0.1; python_version >= '3.11'",
-    "sphinx>=8.2.3; python_version >= '3.11'",
-    "sphinx-autobuild>=2025.8.25; python_version >= '3.11'",
-    "sphinx-autodoc-typehints>=3.5.2; python_version >= '3.11'",
-    "sphinx-click>=6.1.0; python_version >= '3.11'",
+    "furo>=2025.9.25",
+    "myst-parser>=4.0.1",
+    "sphinx>=8.2.3",
+    "sphinx-autobuild>=2025.8.25",
+    "sphinx-autodoc-typehints>=3.5.2",
+    "sphinx-click>=6.1.0",
 ]
 
 # Type hint stubs should be placed in the dev dependency group
@@ -60,7 +60,7 @@ dev = [
     {include-group = "lint"},
     {include-group = "doc"},
     "coverage[toml]>=7.11.3",
-    "deptry>=0.24.0",
+    "deptry>=0.24.0; python_version < '4.0'",
     "mypy>=1.18.2",
     "pygments>=2.19.0",
     "pytest>=9.0.0",
@@ -71,7 +71,7 @@ dev = [
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 [tool.poetry]
 classifiers = ["{{cookiecutter.development_status}}"]
-requires-poetry = ">=2.2"
+requires-poetry = ">=2.3"
 {% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') %}
 packages = [{ include = "{{cookiecutter.package_name}}", from = "src" }]
 {% endif %}
@@ -129,7 +129,7 @@ quiet = true
 force-exclude = true  # Apply excludes to pre-commit
 show-fixes = true
 src = ["src", "tests"]
-target-version = "py311"  # Minimum Python version supported
+target-version = "py313"  # Minimum Python version supported
 include = ["*.py", "*.pyi", "**/pyproject.toml", "*.ipynb"]
 extend-exclude = [
     "__pycache__",

@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6.2.0
         with:
-          python-version: "3.12"
+          python-version: "3.13"
 
       - name: Upgrade pip
         run: |
@@ -49,7 +49,7 @@ jobs:
         with:
           enable-cache: true
           version: {{ "${{ steps.uv-version.outputs.version }}" }}
-          python-version: "3.12"
+          python-version: "3.13"
 {% endif %}
 
       - name: Check if there is a parent commit

@@ -40,7 +40,7 @@ pipx install uv
 
 [pipx] is preferred, but you can also install with `pip install --user`.
 
-It is recommended to set up Python 3.11, 3.12 and 3.13 using [pyenv].
+It is recommended to set up Python 3.12, 3.13 and 3.14 using [pyenv].
 
 ## Creating a project
 
