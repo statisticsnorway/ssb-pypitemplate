@@ -47,7 +47,7 @@ It is recommended to set up Python 3.12, 3.13 and 3.14 using [pyenv].
 Generate a Python project:
 
 ```console
-cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2026.1.7
+cruft create https://github.com/statisticsnorway/ssb-pypitemplate.git --checkout=2026.2.24
 ```
 
 Cruft downloads the template and asks you a series of questions about project variables.
