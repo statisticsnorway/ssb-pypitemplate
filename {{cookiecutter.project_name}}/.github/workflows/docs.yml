@@ -38,7 +38,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6.2.0
         with:
-          python-version: "3.12"
+          python-version: "3.13"
           cache: "poetry"
 {% else %}
       - name: Get uv version from constraints
@@ -53,7 +53,7 @@ jobs:
         with:
           enable-cache: true
           version: {{ "${{ steps.uv-version.outputs.version }}" }}
-          python-version: "3.12"
+          python-version: "3.13"
 {% endif %}
 
       - name: Install dependencies
