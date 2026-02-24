@@ -1,8 +1,8 @@
-nox==2025.11.12
+nox==2026.2.9
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-pip==25.3
+pip==26.0.1
 nox-poetry==1.2.0
-poetry==2.2.1
+poetry==2.3.2
 {% else %}
-uv==0.9.10
+uv==0.10.5
 {% endif %}
