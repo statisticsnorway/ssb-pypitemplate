@@ -13,7 +13,6 @@ from textwrap import dedent
 import nox
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 
-
 try:
     from nox_poetry import Session
     from nox_poetry import session
