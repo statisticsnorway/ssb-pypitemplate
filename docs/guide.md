@@ -2465,9 +2465,9 @@ You can also read the articles on [this blog][hypermodern python blog].
 [hypermodern python cookiecutter]: https://github.com/cjolowicz/cookiecutter-hypermodern-python
 [hypermodern python]: https://blog.claudiojolowicz.com/posts/hypermodern-python-01-setup/
 [import hook]: https://docs.python.org/3/reference/import.html#import-hooks
-[isort black profile]: https://pycqa.github.io/isort/docs/configuration/black_compatibility.html
-[isort force_single_line]: https://pycqa.github.io/isort/docs/configuration/options.html#force-single-line
-[isort lines_after_imports]: https://pycqa.github.io/isort/docs/configuration/options.html#lines-after-imports
+[isort black profile]: https://isort.readthedocs.io/en/latest/configuration/black_compatibility.html
+[isort force_single_line]: https://isort.readthedocs.io/en/latest/configuration/options.html#force-single-line
+[isort lines_after_imports]: https://isort.readthedocs.io/en/latest/configuration/options.html#lines-after-imports
 [isort]: https://pycqa.github.io/isort/
 [jinja]: https://palletsprojects.com/p/jinja/
 [json]: https://www.json.org/

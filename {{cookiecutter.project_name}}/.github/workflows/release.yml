@@ -16,13 +16,14 @@ jobs:
       pull-requests: read
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
         with:
+          persist-credentials: true  # Required for pushing tags to the repository
           fetch-depth: 2
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
       - name: Set up Python
-        uses: actions/setup-python@v6.2.0
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
         with:
           python-version: "3.13"
 
@@ -45,7 +46,7 @@ jobs:
           echo "version=$UV_VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
         with:
           enable-cache: true
           version: {{ "${{ steps.uv-version.outputs.version }}" }}
@@ -92,16 +93,16 @@ jobs:
 
       - name: Publish package on PyPI
         if: steps.check-version.outputs.tag
-        uses: pypa/gh-action-pypi-publish@v1.13.0
+        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b  #v1.14.0
 
       - name: Publish package on TestPyPI
         if: (!steps.check-version.outputs.tag)
-        uses: pypa/gh-action-pypi-publish@v1.13.0
+        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b  #v1.14.0
         with:
           repository-url: https://test.pypi.org/legacy/
 
       - name: Publish the release notes
-        uses: release-drafter/release-drafter@v6.2.0
+        uses: release-drafter/release-drafter@c2e2804cc59f45f57076a99af580d0fedb697927  #v7.3.0
         with:
           publish: {{ "${{ steps.check-version.outputs.tag != '' }}" }}
           tag: {{ "${{ steps.check-version.outputs.tag }}" }}
