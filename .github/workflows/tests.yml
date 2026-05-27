@@ -23,10 +23,11 @@ jobs:
     name: Python ${{ matrix.python-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           path: ssb-pypitemplate
-      - uses: actions/setup-python@v6
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install tools using pip
@@ -81,7 +82,7 @@ jobs:
           result = "${{ runner.os }}-{}-{}-pre-commit".format(python, digest[:8])
           cmd = f'echo "result={result}" >> $GITHUB_OUTPUT'
           subprocess.run(cmd, shell=True)
-      - uses: actions/cache@v5
+      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         if: matrix.os != 'windows-latest'
         with:
           path: ~/.cache/pre-commit
@@ -98,8 +99,10 @@ jobs:
     name: Build documentation & check links
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.13"
       - run: |

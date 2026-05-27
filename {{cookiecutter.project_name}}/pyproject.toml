@@ -206,16 +206,21 @@ classmethod-decorators = ["classmethod", "validator", "root_validator", "pydanti
     "S101",    # asserts are encouraged in pytest
 ]
 
-{% if cookiecutter.dependency_manager_tool == "uv" and cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') %}
+{% if cookiecutter.dependency_manager_tool == "uv" %}
+[tool.uv]
+exclude-newer = "7 days"
+{% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') %}
+
 [tool.uv.build-backend]
 module-name = "{{cookiecutter.package_name}}"
-
 {% endif %}
+
+{% endif -%}
 [build-system]
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 {% else %}
-requires = ["uv_build>=0.10.0,<0.11.0"]
+requires = ["uv_build>=0.11.0,<0.12.0"]
 build-backend = "uv_build"
 {% endif %}
