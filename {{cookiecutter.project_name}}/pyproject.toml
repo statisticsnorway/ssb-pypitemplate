@@ -11,9 +11,7 @@ maintainers = [
     { name = "__DEPARTMENT_NAME__" }
 ]
 {% endif %}
-{% if cookiecutter.dependency_manager_tool == "poetry" %}
-dynamic = ["classifiers"]
-{% else %}
+{% if cookiecutter.dependency_manager_tool == "uv" %}
 classifiers = [
     "Development Status :: 4 - Beta",
 {% if cookiecutter.license == "MIT" %}
@@ -30,6 +28,9 @@ classifiers = [
 dependencies = [
     "click>=8.0.1",
 ]
+{% if cookiecutter.dependency_manager_tool == "poetry" %}
+dynamic = ["classifiers"]
+{% endif %}
 
 [project.urls]
 Changelog = "https://github.com/{{cookiecutter.github_organization}}/{{cookiecutter.project_name}}/releases"
@@ -104,10 +105,16 @@ fail_under = 20
 DEP001 = ["nox", "nox_poetry"]  # packages available by default
 {% else %}
 DEP001 = ["nox"]  # packages available by default
-{% endif -%}
+{% endif %}
+
+[tool.mypy]
+strict = true
+warn_unreachable = true
+pretty = true
+show_column_numbers = true
+show_error_context = true
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
-
 [tool.poetry]
 classifiers = ["{{cookiecutter.development_status}}"]
 requires-poetry = ">=2.3"
@@ -117,14 +124,8 @@ packages = [{ include = "{{cookiecutter.package_name}}", from = "src" }]
 
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.9"
-{% endif %}
 
-[tool.mypy]
-strict = true
-warn_unreachable = true
-pretty = true
-show_column_numbers = true
-show_error_context = true
+{% endif -%}
 
 [tool.pydoclint]
 style = "google"
@@ -232,9 +233,10 @@ indent-width = 4
 {% if cookiecutter.dependency_manager_tool == "uv" %}
 [tool.uv]
 exclude-newer = "7 days"
-{% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') %}
 
+{% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') %}
 [tool.uv.build-backend]
 module-name = "{{cookiecutter.package_name}}"
-{% endif %}
-{% endif %}
+
+{% endif -%}
+{% endif -%}
