@@ -229,14 +229,13 @@ classmethod-decorators = [
 
 [tool.tombi.format.rules]
 indent-width = 4
-
 {% if cookiecutter.dependency_manager_tool == "uv" %}
+
 [tool.uv]
 exclude-newer = "7 days"
-
 {% if cookiecutter.package_name != cookiecutter.project_name.replace('-', '_') %}
+
 [tool.uv.build-backend]
 module-name = "{{cookiecutter.package_name}}"
-
-{% endif -%}
-{% endif -%}
+{% endif %}
+{% endif %}
