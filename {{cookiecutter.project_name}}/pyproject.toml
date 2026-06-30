@@ -227,6 +227,9 @@ classmethod-decorators = [
     "S101",  # asserts are encouraged in pytest
 ]
 
+[tool.tombi.files]
+exclude = ["poetry.lock", "uv.lock", "pdm.lock", "pylock.toml"]
+
 [tool.tombi.format.rules]
 indent-width = 4
 {% if cookiecutter.dependency_manager_tool == "uv" %}
