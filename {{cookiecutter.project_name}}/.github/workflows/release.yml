@@ -16,14 +16,14 @@ jobs:
       pull-requests: read
     steps:
       - name: Check out the repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           persist-credentials: true  # Required for pushing tags to the repository
           fetch-depth: 2
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version: "3.13"
 
@@ -46,7 +46,7 @@ jobs:
           echo "version=$UV_VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Install uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9  # v9.0.0
         with:
           enable-cache: true
           version: {{ "${{ steps.uv-version.outputs.version }}" }}
@@ -152,16 +152,16 @@ jobs:
 
       - name: Publish package on PyPI
         if: steps.check-version.outputs.tag
-        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b  #v1.14.0
+        uses: pypa/gh-action-pypi-publish@ba38be9e461d3875417946c167d0b5f3d385a247  #v1.14.1
 
       - name: Publish package on TestPyPI
         if: (!steps.check-version.outputs.tag)
-        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b  #v1.14.0
+        uses: pypa/gh-action-pypi-publish@ba38be9e461d3875417946c167d0b5f3d385a247  #v1.14.1
         with:
           repository-url: https://test.pypi.org/legacy/
 
       - name: Publish the release notes
-        uses: release-drafter/release-drafter@c2e2804cc59f45f57076a99af580d0fedb697927  #v7.3.0
+        uses: release-drafter/release-drafter@eada3c96a64734dd381cfbda23511034e328ddb0  #v7.6.0
         with:
           publish: {{ "${{ steps.check-version.outputs.tag != '' }}" }}
           tag: {{ "${{ steps.check-version.outputs.tag }}" }}
