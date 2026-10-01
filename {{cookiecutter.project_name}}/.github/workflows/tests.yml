@@ -38,13 +38,13 @@ jobs:
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           persist-credentials: false
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
       - name: Set up Python ${{"{{"}} matrix.python {{"}}"}}
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version: ${{"{{"}} matrix.python {{"}}"}}
 
@@ -82,7 +82,7 @@ jobs:
           echo "version=$UV_VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Install uv
-        uses: uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7  # v10.2.0
         with:
           enable-cache: true
           version: {{ "${{ steps.uv-version.outputs.version }}" }}
@@ -106,7 +106,7 @@ jobs:
           subprocess.run(cmd, shell=True)
 
       - name: Restore pre-commit cache
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae  # v5.0.5
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
         if: matrix.session == 'pre-commit'
         with:
           path: ~/.cache/pre-commit
@@ -119,7 +119,7 @@ jobs:
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
           nox --python=${{"{{"}} matrix.python {{"}}"}}
 {% else %}
-          uvx --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --python=${{ "{{ matrix.python }}" }}
+          uvx --no-build --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --python=${{ "{{ matrix.python }}" }}
 {% endif %}
 
       - name: Upload coverage data
@@ -142,14 +142,14 @@ jobs:
     needs: tests
     steps:
       - name: Check out the repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version: "3.13"
 
@@ -178,7 +178,7 @@ jobs:
           echo "version=$UV_VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Install uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7  # v10.2.0
         with:
           enable-cache: true
           version: {{ "${{ steps.uv-version.outputs.version }}" }}
@@ -196,7 +196,7 @@ jobs:
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
           nox --session=coverage
 {% else %}
-          uvx --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --session=coverage
+          uvx --no-build --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --session=coverage
 {% endif %}
 
       - name: Create coverage report
@@ -204,7 +204,7 @@ jobs:
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
           nox --session=coverage -- xml
 {% else %}
-          uvx --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --session=coverage -- xml
+          uvx --no-build --constraints "${{ "{{ github.workspace }}" }}/.github/workflows/constraints.txt" nox --session=coverage -- xml
 {% endif %}
 
       # Need to fix coverage source paths for SonarCloud scanning in GitHub actions.
@@ -219,4 +219,4 @@ jobs:
           SONAR_TOKEN: {{ "${{ secrets.SONAR_TOKEN }}" }}
         # No need to run SonarCloud analysis if dependabot update or token not defined
         if: env.SONAR_TOKEN != '' && (github.actor != 'dependabot[bot]')
-        uses: SonarSource/sonarqube-scan-action@59db25f34e16620e48ab4bb9e4a5dce155cb5432  # v8.0.0
+        uses: SonarSource/sonarqube-scan-action@ba9859eae8dd6bd29e412f25ddbbef3d032000f4  # v8.2.2
