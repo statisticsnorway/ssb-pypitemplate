@@ -2557,7 +2557,7 @@ You can also read the articles on [this blog][hypermodern python blog].
 [test fixture]: https://docs.pytest.org/en/latest/explanation/fixtures.html#about-fixtures
 [testpypi]: https://test.pypi.org/
 [toml]: https://github.com/toml-lang/toml
-[tox]: https://tox.readthedocs.io/
+[tox]: https://tox.wiki/en/latest/
 [trailing-whitespace]: https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace
 [type annotations]: https://docs.python.org/3/library/typing.html
 [typeguard]: https://github.com/agronholm/typeguard
