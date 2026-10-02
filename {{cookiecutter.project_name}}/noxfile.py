@@ -32,14 +32,14 @@ package = "{{cookiecutter.package_name}}"
 python_versions = ["3.13", "3.12", "3.14"]
 python_versions_for_test = python_versions
 nox.needs_version = ">= 2025.2.9"
-nox.options.sessions = (
+nox.options.sessions = [
     "pre-commit",
     "mypy",
     "tests",
     "typeguard",
     "xdoctest",
     "docs-build",
-)
+]
 {% if cookiecutter.dependency_manager_tool == "uv" %}
 nox.options.default_venv_backend = "uv"
 session = nox.session
@@ -207,8 +207,6 @@ def mypy(session: Session) -> None:
     install_with_uv(session)
 {% endif %}
     session.run("mypy", *args)
-    if not session.posargs:
-        session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
 
 
 @session(python=python_versions_for_test)
