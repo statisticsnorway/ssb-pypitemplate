@@ -2,7 +2,7 @@ nox==2026.8.17
 {% if cookiecutter.dependency_manager_tool == "poetry" %}
 pip==26.2.1
 nox-poetry==1.2.0
-poetry==2.4.3
+poetry==2.5.1
 {% else %}
-uv==0.12.11
+uv==0.12.22
 {% endif %}
