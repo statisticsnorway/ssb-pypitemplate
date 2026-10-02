@@ -802,7 +802,7 @@ one principled, the other pragmatic:
 The first point is treated in detail in the following articles:
 
 - [Should You Use Upper Bound Version Constraints?][schreiner constraints] and [Poetry Versions][schreiner poetry] by Henry Schreiner
-- [Semantic Versioning Will Not Save You][schlawack semantic] by Hynek Schlawack
+- Semantic Versioning Will Not Save Yougit status by Hynek Schlawack
 - [Version numbers: how to use them?][gabor version] by Bernát Gábor
 - [Why I don't like SemVer anymore][cannon semver] by Brett Cannon
 
@@ -2541,7 +2541,6 @@ You can also read the articles on [this blog][hypermodern python blog].
 [ruff]: https://docs.astral.sh/ruff/
 [safety]: https://github.com/pyupio/safety
 [salsify/action-detect-and-tag-new-version]: https://github.com/salsify/action-detect-and-tag-new-version
-[schlawack semantic]: https://hynek.me/articles/semver-will-not-save-you/
 [schreiner constraints]: https://iscinumpy.gitlab.io/post/bound-version-constraints/
 [schreiner poetry]: https://iscinumpy.gitlab.io/post/poetry-versions/
 [semantic versioning]: https://semver.org/
