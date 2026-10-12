@@ -1,25 +1,7 @@
 #!/usr/bin/env python
 import csv
-import json
 import sys
 from pathlib import Path
-
-
-def reindent_cookiecutter_json():
-    """Indent .cookiecutter.json using two spaces.
-
-    The jsonify extension distributed with Cookiecutter uses an indentation
-    width of four spaces. This conflicts with the default indentation width of
-    Prettier for JSON files. Prettier is run as a pre-commit hook in CI.
-    """
-    path = Path(".cookiecutter.json")
-
-    with path.open() as io:
-        data = json.load(io)
-
-    with path.open(mode="w") as io:
-        json.dump(data, io, sort_keys=True, indent=2)
-        io.write("\n")
 
 
 def set_department_name():
@@ -38,7 +20,9 @@ def set_department_name():
         template_dir = Path(__file__).parent.parent
 
         # The department file is stored in a temp directory. Need to search for it.
-        department_file = next(template_dir.rglob("hooks/statistics_norway_departments.csv"), None)
+        department_file = next(
+            template_dir.rglob("hooks/statistics_norway_departments.csv"), None
+        )
 
         department_lookup = {}
         if department_file and department_file.exists():
@@ -63,5 +47,4 @@ def set_department_name():
 
 
 if __name__ == "__main__":
-    reindent_cookiecutter_json()
     set_department_name()
